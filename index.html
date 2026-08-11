@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Biggest Wiener — A Cookbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Cormorant+Garant:ital,wght@0,300;0,400;1,300;1,400&family=Courier+Prime:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0A0A0A;
+  --charcoal: #161613;
+  --bone: #F2EDE4;
+  --gold: #B8965A;
+  --gold-light: #D4B07A;
+  --muted: #7A7468;
+  --rule: rgba(184, 150, 90, 0.28);
+  --page-w: 900px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #111;
+  color: var(--bone);
+  font-family: 'Cormorant Garant', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  width: 100%;
+  max-width: var(--page-w);
+  min-height: 100vh;
+  margin: 0 auto;
+  display: none;
+  flex-direction: column;
+  background: var(--black);
+  border-left: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+  position: relative;
+}
+.page.active { display: flex; }
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 2.5rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--charcoal);
+  flex-shrink: 0;
+}
+.nav-course {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.nav-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--muted);
+  text-align: center;
+  flex: 1;
+  padding: 0 1rem;
+}
+.nav-controls { display: flex; gap: 0.5rem; align-items: center; }
+.nav-btn {
+  background: none;
+  border: 1px solid var(--rule);
+  color: var(--gold);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.nav-btn:hover { background: var(--gold); color: var(--black); }
+.nav-btn:disabled { opacity: 0.25; cursor: default; }
+.nav-btn:disabled:hover { background: none; color: var(--gold); }
+
+/* COVER */
+.cover-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5rem 3rem;
+  background: radial-gradient(ellipse at center, #1e1a14 0%, #0A0A0A 75%);
+}
+.cover-eyebrow {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2.5rem;
+}
+.cover-hr { width: 48px; height: 1px; background: var(--gold); margin: 0 auto 2.5rem; }
+.cover-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 400;
+  line-height: 1.0;
+  color: var(--bone);
+  margin-bottom: 0.4rem;
+}
+.cover-title em { font-style: italic; color: var(--gold-light); }
+.cover-sub {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(0.95rem, 2.5vw, 1.35rem);
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 3rem;
+  letter-spacing: 0.03em;
+}
+.cover-intro {
+  font-size: 1.05rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.95;
+  color: rgba(242,237,228,0.6);
+  max-width: 580px;
+  margin: 0 auto 3.5rem;
+  text-align: left;
+}
+.cover-intro p { margin-bottom: 1.25rem; }
+.cover-intro p:last-child { margin-bottom: 0; }
+.cover-meta {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(138,130,120,0.5);
+}
+.cover-start {
+  margin-top: 3rem;
+  background: none;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.cover-start:hover { background: var(--gold); color: var(--black); }
+
+/* TOC */
+.toc-body {
+  flex: 1;
+  padding: 4rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.toc-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2.5rem;
+  display: block;
+}
+.toc-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+  cursor: pointer;
+  transition: color 0.2s;
+  text-decoration: none;
+  color: var(--bone);
+  gap: 1.25rem;
+}
+.toc-item:hover { color: var(--gold-light); }
+.toc-item:first-of-type { border-top: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  width: 2.5rem;
+  flex-shrink: 0;
+  padding-top: 0.3rem;
+}
+.toc-dish-wrap { flex: 1; }
+.toc-dish { font-family: 'Playfair Display', serif; font-size: 1.15rem; display: block; }
+.toc-dish-sub {
+  font-family: 'Cormorant Garant', serif;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.88rem;
+  display: block;
+  margin-top: 0.2rem;
+  line-height: 1.5;
+}
+.toc-dish-quip {
+  font-family: 'Cormorant Garant', serif;
+  font-style: italic;
+  color: rgba(184,150,90,0.65);
+  font-size: 0.82rem;
+  display: block;
+  margin-top: 0.15rem;
+  line-height: 1.5;
+}
+.toc-weekday {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  padding-top: 0.3rem;
+}
+
+/* RECIPE PAGE */
+.recipe-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 0;
+}
+.recipe-left {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--rule);
+  overflow: hidden;
+}
+.recipe-image-wrap {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+.recipe-image-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(10,10,10,0.6) 100%);
+  pointer-events: none;
+}
+.recipe-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.8) contrast(1.08);
+  transition: transform 0.7s ease;
+}
+.recipe-image-wrap:hover img { transform: scale(1.04); }
+.recipe-header {
+  padding: 2rem 2.25rem 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.recipe-course-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.recipe-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 3vw, 1.95rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--bone);
+  margin-bottom: 0.3rem;
+}
+.recipe-subtitle {
+  font-family: 'Cormorant Garant', serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--gold-light);
+  letter-spacing: 0.04em;
+}
+.recipe-blurb {
+  padding: 1.75rem 2.25rem;
+  font-size: 1.02rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.9;
+  color: rgba(242,237,228,0.68);
+  flex: 1;
+}
+.recipe-blurb strong { font-style: normal; font-weight: 400; color: var(--bone); }
+.recipe-meta-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--rule);
+  flex-shrink: 0;
+}
+.meta-cell { padding: 0.9rem 1.25rem; border-right: 1px solid var(--rule); }
+.meta-cell:last-child { border-right: none; }
+.meta-cell:nth-child(3), .meta-cell:nth-child(4) { border-top: 1px solid var(--rule); }
+.meta-key {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.meta-val { font-family: 'Cormorant Garant', serif; font-size: 0.92rem; font-style: italic; color: var(--bone); }
+
+/* RIGHT COLUMN */
+.recipe-right {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: calc(100vh - 52px);
+}
+.recipe-section { padding: 1.75rem 2.25rem; border-bottom: 1px solid var(--rule); }
+.recipe-section:last-child { border-bottom: none; flex: 1; }
+.section-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 1.1rem;
+}
+.ing-list { list-style: none; }
+.ing-list li {
+  font-size: 0.93rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: rgba(242,237,228,0.72);
+  padding: 0.35rem 0 0.35rem 1.1rem;
+  border-bottom: 1px solid rgba(184,150,90,0.1);
+  position: relative;
+}
+.ing-list li:last-child { border-bottom: none; }
+.ing-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 0.65rem; top: 0.45rem; }
+.step { display: flex; gap: 1rem; margin-bottom: 1.1rem; }
+.step:last-child { margin-bottom: 0; }
+.step-n {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-top: 0.22rem;
+  flex-shrink: 0;
+  width: 1.4rem;
+}
+.step-t { font-size: 0.92rem; font-weight: 300; line-height: 1.75; color: rgba(242,237,228,0.7); }
+.chef-note { border-left: 2px solid var(--gold); padding: 1rem 1.25rem; background: rgba(184,150,90,0.05); }
+.chef-note-lbl {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.chef-note p { font-size: 0.88rem; font-style: italic; font-weight: 300; line-height: 1.8; color: rgba(242,237,228,0.58); }
+
+/* COLOPHON */
+.colophon-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5rem 3rem;
+  background: radial-gradient(ellipse at center, #1a160f 0%, #0A0A0A 75%);
+}
+.colophon-hr { width: 48px; height: 1px; background: var(--gold); margin: 0 auto 2.5rem; }
+.colophon-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--bone);
+  margin-bottom: 1.5rem;
+}
+.colophon-text {
+  font-size: 1.05rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.95;
+  color: var(--muted);
+  max-width: 500px;
+  margin: 0 auto 3rem;
+  text-align: left;
+}
+.colophon-text p { margin-bottom: 1rem; }
+.colophon-text p:last-child { margin-bottom: 0; }
+.colophon-meta {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(138,130,120,0.4);
+}
+
+.page-indicator {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+  z-index: 100;
+}
+.pip {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--rule);
+  border: 1px solid var(--gold);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.pip.active { background: var(--gold); }
+
+@media (max-width: 680px) {
+  .recipe-body { grid-template-columns: 1fr; }
+  .recipe-left { border-right: none; border-bottom: 1px solid var(--rule); }
+  .recipe-right { max-height: none; overflow-y: visible; }
+  .nav-title { display: none; }
+  .toc-body { padding: 2.5rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE 0: COVER -->
+<div class="page active" id="p0">
+  <div class="nav-bar">
+    <span class="nav-course">The Biggest Wiener · Devaraiders 2025</span>
+    <span class="nav-title">Waivers of Rohan · Blake Kelly</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(1)">Enter →</button>
+    </div>
+  </div>
+  <div class="cover-body">
+    <p class="cover-eyebrow">Devaraiders Fantasy Football · 2025 Season · A Punishment Cookbook</p>
+    <div class="cover-hr"></div>
+    <h1 class="cover-title">The Biggest<br><em>Wiener</em></h1>
+    <p class="cover-sub">A Cookbook</p>
+    <div class="cover-hr"></div>
+    <div class="cover-intro">
+      <p>I went 6-8, missed the playoffs by a hair, and then — instead of quietly disappearing into the offseason like a normal person — I fought my way through the loser's bracket for four straight weeks to specifically finish last. Nobody works that hard for anything good in their life. I found out I could commit to something. Unfortunately it was becoming the worst general manager in Devaraiders history.</p>
+
+      <p>My punishment: build an entire cookbook centered on phallic-shaped meat, which honestly should've gone to Russell given how much time he spends thinking about them. I got the trophy. He just got jealous.</p>
+
+      <p>I paid $53 to keep Malik Nabers, who lasted three weeks before his hamstring made better life decisions than I did all season. Russell went 10-4 this season, by the way — turns out the man can build a fantasy roster, just not a relationship, which tracks, since both require you to stick with a bad decision past week three and Russell's never done that in his life. JP, a man so historically opposed to human connection that monks find him aloof, is now moving in with a woman, which is statistically more surprising than anything that happened in my lineup last season. And I started Sam Darnold at quarterback, so the bar was already underground.</p>
+
+      <p>McGlynn christened "The Biggest Wiener" last season — a gold trophy of a hot dog on a fork that Trevor commissioned with the deranged confidence of a man who knew the universe owed him one — by introducing it to his bootyhole in ways McGlynn has declined to elaborate on and the rest of us have declined to ask about. McGlynn then went 10-4 this season. I am now the trophy's second intimate recipient. I have made my peace with this. I have also made an appointment.</p>
+
+      <p>Jordan talks more shit before kickoff than anyone in this league backs up all season, somehow winning less than his own trash talk would suggest is mathematically possible.</p>
+
+      <p>I've since handed roster management to Claude — an AI — because at some point the machine has to outperform the man who started the Saints D/ST for the better part of a season while they lost games in ways that felt personally targeted. Claude cannot fall in love with a $53 keeper. Claude has never once looked at an injury report and thought "he'll play through it." Claude does not have feelings. We are going to be fine.</p>
+
+      <p>What follows is my sentence. Eight days. One protein, prepared seven filthy ways. I earned every bite by actively trying.</p>
+    </div>
+    <p class="cover-meta">Gluten-Free · Serves Two · 6-8 · 12th of 12 · Dignity Not Included</p>
+    <button class="cover-start" onclick="goTo(1)">View the Menu</button>
+  </div>
+</div>
+
+<!-- PAGE 1: TOC -->
+<div class="page" id="p1">
+  <div class="nav-bar">
+    <span class="nav-course">The Courses</span>
+    <span class="nav-title">The Biggest Wiener · Eight Courses</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(0)">← Back</button>
+      <button class="nav-btn" onclick="goTo(2)">Next →</button>
+    </div>
+  </div>
+  <div class="toc-body">
+    <span class="toc-label">Eight Courses · One Protein · Zero Excuses</span>
+    <div class="toc-item" onclick="goTo(2)">
+      <span class="toc-num">I</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">The Waiver Wire Special</span>
+        <span class="toc-dish-sub">Smashed All-Beef Dog · Corn Tortilla · Chipotle Emulsion</span>
+        <span class="toc-dish-quip">Like Westbrook-Ikhine — nobody saw it coming and it outperformed everything you paid for.</span>
+      </div>
+      <span class="toc-weekday">Monday</span>
+    </div>
+    <div class="toc-item" onclick="goTo(3)">
+      <span class="toc-num">II</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">Pigs in a Playoff Blanket</span>
+        <span class="toc-dish-sub">Upside-Down Puff Pastry Dog · Gruyère · Everything Crust</span>
+        <span class="toc-dish-quip">It made the playoffs. You did not. Some things just work out that way.</span>
+      </div>
+      <span class="toc-weekday">Tuesday</span>
+    </div>
+    <div class="toc-item" onclick="goTo(4)">
+      <span class="toc-num">III</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">Tartare of Last Resort</span>
+        <span class="toc-dish-sub">All-Beef Hot Dog Tartare · Capers · Dijon · Raw Egg Yolk</span>
+        <span class="toc-dish-quip">A $53 keeper presented with Michelin-star seriousness. Still raw. Still a mistake.</span>
+      </div>
+      <span class="toc-weekday">Wednesday</span>
+    </div>
+    <div class="toc-item" onclick="goTo(5)">
+      <span class="toc-num">IV</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">Fourth and Wellington</span>
+        <span class="toc-dish-sub">Hot Dog Wellington · Mushroom Duxelles · GF Puff Pastry</span>
+        <span class="toc-dish-quip">You went for it on fourth down all season. This is the only time it worked.</span>
+      </div>
+      <span class="toc-weekday">Thursday</span>
+    </div>
+    <div class="toc-item" onclick="goTo(6)">
+      <span class="toc-num">V</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">The Consolation Brat</span>
+        <span class="toc-dish-sub">Bratwurst · Sun-Dried Tomato Cream · GF Rigatoni</span>
+        <span class="toc-dish-quip">You didn't make the playoffs. Here's something warm and rich to cry into.</span>
+      </div>
+      <span class="toc-weekday">Friday</span>
+    </div>
+    <div class="toc-item" onclick="goTo(7)">
+      <span class="toc-num">VI</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">The Flex Spot</span>
+        <span class="toc-dish-sub">Grilled All-Beef Dog · Full Elote Treatment · Charred Corn</span>
+        <span class="toc-dish-quip">Started a tight end here in week fourteen. Lost by four. The corn has more sense.</span>
+      </div>
+      <span class="toc-weekday">Saturday</span>
+    </div>
+    <div class="toc-item" onclick="goTo(8)">
+      <span class="toc-num">VII</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">The Commissioner's Board</span>
+        <span class="toc-dish-sub">Hot Honey Kielbasa · Whipped Feta · Accoutrements</span>
+        <span class="toc-dish-quip">Trevor won at 9-5 and made a penis trophy. Karma is real and it is gold-plated.</span>
+      </div>
+      <span class="toc-weekday">Sunday</span>
+    </div>
+    <div class="toc-item" onclick="goTo(9)">
+      <span class="toc-num">VIII</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">The Dead Cap</span>
+        <span class="toc-dish-sub">Bacon-Wrapped Dog · Chipotle Crema · Mango-Jalapeño Pico</span>
+        <span class="toc-dish-quip">$53. Three weeks. IR. This dish is what closure tastes like.</span>
+      </div>
+      <span class="toc-weekday">Monday</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: COURSE I -->
+<div class="page" id="p2">
+  <div class="nav-bar">
+    <span class="nav-course">Course I · Monday</span>
+    <span class="nav-title">The Biggest Wiener</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(1)">← Back</button>
+      <button class="nav-btn" onclick="goTo(3)">Next →</button>
+    </div>
+  </div>
+  <div class="recipe-body">
+    <div class="recipe-left">
+      <div class="recipe-image-wrap">
+        <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=800&q=80" alt="Smash hot dog tacos" onerror="this.style.background='#1a1a18'">
+      </div>
+      <div class="recipe-header">
+        <span class="recipe-course-label">Course I · Monday Evening</span>
+        <h2 class="recipe-title">The Waiver Wire Special</h2>
+        <p class="recipe-subtitle">Smashed All-Beef Dog · Corn Tortilla · Chipotle Emulsion</p>
+      </div>
+      <div class="recipe-blurb">
+        I smashed a hot dog flat against screaming cast iron because sometimes the only way to get something to perform is to apply pressure it never consented to — a philosophy I discovered too late applies to fantasy rosters, not just meat. <strong>This dog showed up off the waiver wire and outworked guys I paid real money for,</strong> which is the most backhanded compliment I can give a piece of processed pork. Nick Westbrook-Ikhine, 25% owned, started in my flex out of sheer desperation, quietly did more for my team in week fourteen than Malik Nabers did on my bench all season with 1,200 receiving yards and zero say in the matter.
+      </div>
+      <div class="recipe-meta-strip">
+        <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef hot dogs</span></div>
+        <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Cast iron smash</span></div>
+        <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">GF corn tortillas</span></div>
+        <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">15 minutes</span></div>
+      </div>
+    </div>
+    <div class="recipe-right">
+      <div class="recipe-section">
+        <span class="section-label">Ingredients — Serves 2</span>
+        <ul class="ing-list">
+          <li>4 all-beef hot dogs, split lengthwise</li>
+          <li>6 GF corn tortillas</li>
+          <li>½ cup mayonnaise + 1–2 chipotles in adobo, blended smooth</li>
+          <li>1½ cups green cabbage, very thinly shaved</li>
+          <li>¼ cup pickled jalapeños</li>
+          <li>2 oz cotija cheese, crumbled</li>
+          <li>1 lime, cut into wedges</li>
+          <li>Neutral oil, kosher salt</li>
+        </ul>
+      </div>
+      <div class="recipe-section">
+        <span class="section-label">Preparation</span>
+        <div class="step"><span class="step-n">01</span><span class="step-t">Heat a cast iron skillet over high heat until smoking. Add a thin film of neutral oil.</span></div>
+        <div class="step"><span class="step-n">02</span><span class="step-t">Place hot dogs cut-side down. Smash firmly with a heavy spatula and hold for 30 seconds. Do not touch them again. Let the crust build undisturbed for 2–3 minutes until deeply mahogany — darker than feels right.</span></div>
+        <div class="step"><span class="step-n">03</span><span class="step-t">Flip and sear the skin side 60 seconds. Rest on a wire rack, not paper towels. The crust deserves air.</span></div>
+        <div class="step"><span class="step-n">04</span><span class="step-t">Warm tortillas directly over a gas flame or dry pan until lightly charred at the edges.</span></div>
+        <div class="step"><span class="step-n">05</span><span class="step-t">Spread chipotle mayo on each tortilla. Place one smashed dog half per taco. Top with cabbage, jalapeños, cotija. Finish with an aggressive squeeze of lime and flaky salt.</span></div>
+      </div>
+      <div class="recipe-section">
+        <div class="chef-note">
+          <span class="chef-note-lbl">My Note</span>
+          <p>Press harder than feels appropriate. A hot dog that isn't being firmly handled is just lying there doing nothing — much like my roster management from weeks one through thirteen. Commit to the press. The crust does not form from hesitation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 3: COURSE II -->
+<div class="page" id="p3">
+  <div class="nav-bar">
+    <span class="nav-course">Course II · Tuesday</span>
+    <span class="nav-title">The Biggest Wiener</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(2)">← Back</button>
+      <button class="nav-btn" onclick="goTo(4)">Next →</button>
+    </div>
+  </div>
+  <div class="recipe-body">
+    <div class="recipe-left">
+      <div class="recipe-image-wrap">
+        <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=800&q=80" alt="Upside down puff pastry hot dogs" onerror="this.style.background='#1a1a18'">
+      </div>
+      <div class="recipe-header">
+        <span class="recipe-course-label">Course II · Tuesday Evening</span>
+        <h2 class="recipe-title">Pigs in a Playoff Blanket</h2>
+        <p class="recipe-subtitle">Upside-Down Puff Pastry Dog · Gruyère · Everything Crust</p>
+      </div>
+      <div class="recipe-blurb">
+        Wrapped in pastry, flipped upside down, baked until the cheese underneath crisps into something lacquered and completely disconnected from what's actually inside. <strong>This dog made the postseason. I did not.</strong> It's currently handling that better than I am. I had Malik Nabers, Trey McBride, and Marvin Harrison Jr. on my roster and still watched the playoffs from my couch with the Saints D/ST somehow still active in my starting lineup, which at this point felt less like a decision and more like a hostage situation I'd created for myself.
+      </div>
+      <div class="recipe-meta-strip">
+        <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef hot dogs</span></div>
+        <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Oven bake, inversion</span></div>
+        <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">GF puff pastry</span></div>
+        <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">10 min + 20 min oven</span></div>
+      </div>
+    </div>
+    <div class="recipe-right">
+      <div class="recipe-section">
+        <span class="section-label">Ingredients — Serves 2</span>
+        <ul class="ing-list">
+          <li>4 all-beef hot dogs</li>
+          <li>1 sheet GF puff pastry, thawed — verify label; Pepperidge Farm is NOT GF</li>
+          <li>4 slices Gruyère or Swiss, cut to fit</li>
+          <li>1 egg, beaten</li>
+          <li>2 tbsp everything bagel seasoning</li>
+          <li>Whole grain mustard, for serving</li>
+          <li>Parchment paper</li>
+        </ul>
+      </div>
+      <div class="recipe-section">
+        <span class="section-label">Preparation</span>
+        <div class="step"><span class="step-n">01</span><span class="step-t">Preheat oven to 400°F. Line a baking sheet with parchment and lightly grease it.</span></div>
+        <div class="step"><span class="step-n">02</span><span class="step-t">Lay cheese slices directly on the parchment. Place one hot dog centered on top of each.</span></div>
+        <div class="step"><span class="step-n">03</span><span class="step-t">Cut puff pastry into strips wide enough to wrap each dog with slight overlap. Drape over, tucking edges beneath. Brush generously with egg wash. Press everything bagel seasoning firmly into the surface.</span></div>
+        <div class="step"><span class="step-n">04</span><span class="step-t">Bake 18–22 minutes until deeply golden and the cheese has crisped and caramelized at the visible edges. The color should make you slightly nervous before you pull it.</span></div>
+        <div class="step"><span class="step-n">05</span><span class="step-t">Rest exactly 3 minutes. Slide a thin spatula fully underneath and flip cheese-side up onto a board. Serve immediately with whole grain mustard.</span></div>
+      </div>
+      <div class="recipe-section">
+        <div class="chef-note">
+          <span class="chef-note-lbl">My Note</span>
+          <p>I dropped CJ Stroud for Sam Darnold mid-season with the quiet confidence of a man who has learned nothing. The pastry flip requires the same energy — commitment, no hesitation, accepting what's underneath. Unlike the Stroud decision, this one worked out.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 4: COURSE III - TARTARE -->
+<div class="page" id="p4">
+  <div class="nav-bar">
+    <span class="nav-course">Course III · Wednesday</span>
+    <span class="nav-title">The Biggest Wiener</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(3)">← Back</button>
+      <button class="nav-btn" onclick="goTo(5)">Next →</button>
+    </div>
+  </div>
+  <div class="recipe-body">
+    <div class="recipe-left">
+      <div class="recipe-image-wrap">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80" alt="Hot dog tartare plated elegantly" onerror="this.style.background='#1a1a18'">
+      </div>
+      <div class="recipe-header">
+        <span class="recipe-course-label">Course III · Wednesday Evening</span>
+        <h2 class="recipe-title">Tartare of Last Resort</h2>
+        <p class="recipe-subtitle">All-Beef Hot Dog · Capers · Dijon · Shallot · Raw Egg Yolk</p>
+      </div>
+      <div class="recipe-blurb">
+        Finely diced, plated with a raw yolk on top like it's trying to seduce someone at a wedding. <strong>It's a hot dog wearing a tuxedo it stole.</strong> Ring mold, capers, shallot, dijon, the whole classical French treatment applied to $53 worth of processed pork that lasted exactly as long as Malik Nabers did on my roster — three weeks, no explanation, gone before anyone looked too closely. I served it with a straight face and zero regrets, the same energy I brought to every start/sit decision that ruined my season.
+      </div>
+      <div class="recipe-meta-strip">
+        <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef hot dogs</span></div>
+        <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">No-cook · knife work</span></div>
+        <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">Ring mold, plated</span></div>
+        <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">15 minutes</span></div>
+      </div>
+    </div>
+    <div class="recipe-right">
+      <div class="recipe-section">
+        <span class="section-label">Ingredients — Serves 2</span>
+        <ul class="ing-list">
+          <li>4 all-beef hot dogs, very finely diced — knife work only, no food processor</li>
+          <li>2 tbsp shallot, minced</li>
+          <li>1 tbsp capers, roughly chopped</li>
+          <li>1 tsp dijon mustard</li>
+          <li>1 tsp Worcestershire sauce ⚠️ GF (Lea & Perrins is GF)</li>
+          <li>½ tsp hot sauce</li>
+          <li>2 raw egg yolks</li>
+          <li>Cornichons and GF crackers or cucumber rounds, to serve</li>
+          <li>Flaky salt, black pepper, chives to finish</li>
+        </ul>
+      </div>
+      <div class="recipe-section">
+        <span class="section-label">Preparation</span>
+        <div class="step"><span class="step-n">01</span><span class="step-t">Dice hot dogs as finely as possible — small, uniform pieces. This is not the time for rustic. Treat it like it deserves to be here.</span></div>
+        <div class="step"><span class="step-n">02</span><span class="step-t">In a bowl, combine diced hot dog, shallot, capers, dijon, Worcestershire, and hot sauce. Mix gently until just combined. Season with salt and pepper. Taste. Adjust.</span></div>
+        <div class="step"><span class="step-n">03</span><span class="step-t">Press mixture firmly into a ring mold on each plate. Smooth the top. Carefully unmold.</span></div>
+        <div class="step"><span class="step-n">04</span><span class="step-t">Nestle one raw egg yolk into a small indent pressed into the top of each tartare. It should sit there with quiet confidence.</span></div>
+        <div class="step"><span class="step-n">05</span><span class="step-t">Finish with chives and flaky salt. Arrange cornichons and crackers or cucumber alongside. Serve immediately and accept the compliments without revealing what it is until after the first bite.</span></div>
+      </div>
+      <div class="recipe-section">
+        <div class="chef-note">
+          <span class="chef-note-lbl">My Note</span>
+          <p>The knife work is the entire point. A food processor turns this into paste and the illusion collapses entirely — much like my season once people looked at the actual standings. Fine dice. Steady hand. Committed presentation. The confidence has to come from somewhere since the ingredient isn't providing it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 5: COURSE IV - WELLINGTON -->
+<div class="page" id="p5">
+  <div class="nav-bar">
+    <span class="nav-course">Course IV · Thursday</span>
+    <span class="nav-title">The Biggest Wiener</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(4)">← Back</button>
+      <button class="nav-btn" onclick="goTo(6)">Next →</button>
+    </div>
+  </div>
+  <div class="recipe-body">
+    <div class="recipe-left">
+      <div class="recipe-image-wrap">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80" alt="Hot dog Wellington golden pastry" onerror="this.style.background='#1a1a18'">
+      </div>
+      <div class="recipe-header">
+        <span class="recipe-course-label">Course IV · Thursday Evening — The Centerpiece</span>
+        <h2 class="recipe-title">Fourth and Wellington</h2>
+        <p class="recipe-subtitle">Hot Dog Wellington · Mushroom Duxelles · Prosciutto · GF Puff Pastry</p>
+      </div>
+      <div class="recipe-blurb">
+        I went for it on fourth down all year and it never worked — <strong>until I wrapped a hot dog in mushrooms, ham, and pastry and somehow produced the single best decision of my entire season.</strong> Nothing else I touched in 2025 deserved this much effort. This dog didn't need it and got it anyway. Life's unfair like that. The crust shatters at the touch and the inside is exactly what it promised to be, which puts it one for one against my starting lineup all year.
+      </div>
+      <div class="recipe-meta-strip">
+        <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef hot dogs</span></div>
+        <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Duxelles wrap, oven roast</span></div>
+        <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">GF puff pastry</span></div>
+        <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">45 min prep · 25 min oven</span></div>
+      </div>
+    </div>
+    <div class="recipe-right">
+      <div class="recipe-section">
+        <span class="section-label">Ingredients — Serves 2</span>
+        <ul class="ing-list">
+          <li>4 all-beef hot dogs, patted very dry</li>
+          <li>8 oz cremini or baby bella mushrooms, very finely chopped</li>
+          <li>2 tbsp butter</li>
+          <li>2 cloves garlic, minced</li>
+          <li>1 tsp fresh thyme leaves</li>
+          <li>4 slices prosciutto, laid flat</li>
+          <li>1 sheet GF puff pastry, thawed ⚠️ verify GF label</li>
+          <li>1 egg, beaten (egg wash)</li>
+          <li>Dijon mustard, for brushing</li>
+          <li>Flaky salt, black pepper</li>
+          <li>Whole grain mustard, to serve</li>
+        </ul>
+      </div>
+      <div class="recipe-section">
+        <span class="section-label">Preparation</span>
+        <div class="step"><span class="step-n">01</span><span class="step-t">Make the duxelles: melt butter in a skillet over medium-high heat. Add mushrooms and cook, stirring often, until all moisture has evaporated and the mixture is dark, dry, and deeply concentrated — about 12–15 minutes. Add garlic and thyme for the final 2 minutes. Season and cool completely.</span></div>
+        <div class="step"><span class="step-n">02</span><span class="step-t">Brush each hot dog lightly with dijon. Lay a sheet of plastic wrap flat. Arrange 2 prosciutto slices overlapping in a rectangle. Spread a thin, even layer of cooled duxelles over the prosciutto. Place a hot dog at the edge and roll tightly using the plastic wrap to help. Twist the ends to seal. Refrigerate 15 minutes minimum.</span></div>
+        <div class="step"><span class="step-n">03</span><span class="step-t">Preheat oven to 425°F. Cut puff pastry into rectangles large enough to wrap each prosciutto-wrapped dog. Remove plastic wrap, place the roll at the pastry edge, roll tightly, and seal the seam and ends with egg wash. Brush the entire surface with egg wash.</span></div>
+        <div class="step"><span class="step-n">04</span><span class="step-t">Score the pastry top lightly with a knife in a crosshatch or diagonal pattern. Sprinkle with flaky salt. Place seam-side down on a parchment-lined baking sheet.</span></div>
+        <div class="step"><span class="step-n">05</span><span class="step-t">Bake 20–25 minutes until the pastry is deeply golden and shatteringly crisp. Rest 5 minutes before slicing. Serve with whole grain mustard and the quiet satisfaction of having done something correctly for once.</span></div>
+      </div>
+      <div class="recipe-section">
+        <div class="chef-note">
+          <span class="chef-note-lbl">My Note</span>
+          <p>The duxelles must be completely dry before you use them. Any residual moisture turns the pastry soggy from the inside — a wet, collapsed crust that promised everything and delivered nothing. I have been on the receiving end of that exact experience from multiple roster decisions last season. Dry the mushrooms. Take your time. Do it right.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 6: COURSE V - CONSOLATION BRAT -->
+<div class="page" id="p6">
+  <div class="nav-bar">
+    <span class="nav-course">Course V · Friday</span>
+    <span class="nav-title">The Biggest Wiener</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(5)">← Back</button>
+      <button class="nav-btn" onclick="goTo(7)">Next →</button>
+    </div>
+  </div>
+  <div class="recipe-body">
+    <div class="recipe-left">
+      <div class="recipe-image-wrap">
+        <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&q=80" alt="Creamy sun-dried tomato pasta with bratwurst" onerror="this.style.background='#1a1a18'">
+      </div>
+      <div class="recipe-header">
+        <span class="recipe-course-label">Course V · Friday Evening</span>
+        <h2 class="recipe-title">The Consolation Brat</h2>
+        <p class="recipe-subtitle">Bratwurst · Sun-Dried Tomato Cream · GF Rigatoni</p>
+      </div>
+      <div class="recipe-blurb">
+        The sauce alone has ended engagements in the good direction. <strong>Add a hard-seared brat and rigatoni and you've got something richer and more satisfying than any conversation I had with my bench all season.</strong> Sun-dried tomatoes, heavy cream, garlic, parmesan, one pan, twenty-five minutes — this is what commitment looks like. I wouldn't know personally, but the pasta does. I had Nabers, Harrison, McBride, and Montgomery on my roster and somehow still finished with the fewest points in the league, so clearly having good ingredients was never really my problem.
+      </div>
+      <div class="recipe-meta-strip">
+        <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">Bratwurst</span></div>
+        <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Hard sear, one-pan sauce</span></div>
+        <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">GF rigatoni or penne</span></div>
+        <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">25 minutes</span></div>
+      </div>
+    </div>
+    <div class="recipe-right">
+      <div class="recipe-section">
+        <span class="section-label">Ingredients — Serves 2</span>
+        <ul class="ing-list">
+          <li>4 bratwurst links</li>
+          <li>12 oz GF rigatoni</li>
+          <li>4 cloves garlic, thinly sliced</li>
+          <li>½ cup sun-dried tomatoes in oil, roughly chopped</li>
+          <li>1 cup heavy cream</li>
+          <li>½ cup parmesan, finely grated, plus more to finish</li>
+          <li>1 tsp red pepper flakes</li>
+          <li>1 tsp dried oregano</li>
+          <li>Fresh basil, to finish</li>
+          <li>Olive oil, salt, black pepper</li>
+        </ul>
+      </div>
+      <div class="recipe-section">
+        <span class="section-label">Preparation</span>
+        <div class="step"><span class="step-n">01</span><span class="step-t">Bring a large pot of heavily salted water to boil. Cook pasta to al dente. Reserve one full cup of pasta water before draining.</span></div>
+        <div class="step"><span class="step-n">02</span><span class="step-t">In a wide skillet over medium-high, sear brats whole with no oil. Turn every 2 minutes until deeply browned on all sides, about 8–10 minutes. Remove, rest briefly, slice on the bias into ¾-inch rounds.</span></div>
+        <div class="step"><span class="step-n">03</span><span class="step-t">Reduce to medium. Add a splash of olive oil to the same pan — do not wipe it, those browned bits are the whole point. Sauté garlic 60 seconds. Add sun-dried tomatoes, red pepper flakes, oregano. Stir 1 minute.</span></div>
+        <div class="step"><span class="step-n">04</span><span class="step-t">Pour in cream. Simmer 3–4 minutes until slightly thickened. Add parmesan and stir until melted. Season aggressively.</span></div>
+        <div class="step"><span class="step-n">05</span><span class="step-t">Return sliced brats to the sauce. Add drained pasta and toss over medium heat, adding pasta water in small splashes until the sauce is glossy and coats every ridge. Serve with extra parmesan and torn basil.</span></div>
+      </div>
+      <div class="recipe-section">
+        <div class="chef-note">
+          <span class="chef-note-lbl">My Note</span>
+          <p>A pale, unseared brat sliding around in cream sauce is a waste of everyone's time — and I say this as a man who started Courtland Sutton while Malik Nabers posted historic numbers on my bench. Sear it until you're uncomfortable. Then go one more minute. That's where the season should have been managed from the start.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 7: COURSE VI - FLEX SPOT -->
+<div class="page" id="p7">
+  <div class="nav-bar">
+    <span class="nav-course">Course VI · Saturday</span>
+    <span class="nav-title">The Biggest Wiener</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(6)">← Back</button>
+      <button class="nav-btn" onclick="goTo(8)">Next →</button>
+    </div>
+  </div>
+  <div class="recipe-body">
+    <div class="recipe-left">
+      <div class="recipe-image-wrap">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Elote style hot dog with charred corn" onerror="this.style.background='#1a1a18'">
+      </div>
+      <div class="recipe-header">
+        <span class="recipe-course-label">Course VI · Saturday Evening</span>
+        <h2 class="recipe-title">The Flex Spot</h2>
+        <p class="recipe-subtitle">Grilled All-Beef Dog · Full Elote Treatment · Charred Corn</p>
+      </div>
+      <div class="recipe-blurb">
+        Scored, charred, and dressed up in mayo, cotija, and lime like it's trying to impress someone's parents. <strong>Meanwhile my actual flex spot spent all season starting guys with four catches and a prayer.</strong> The corn on the side has more consistency than anyone I rostered in week fourteen, when I started a tight end who caught for four total yards and lost me the game by four points. I scored the dogs diagonally and thought about that decision the entire time I was grilling, which is either growth or the beginning of a very specific kind of psychosis.
+      </div>
+      <div class="recipe-meta-strip">
+        <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef hot dogs</span></div>
+        <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Grill or cast iron char</span></div>
+        <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">Standalone — no bun</span></div>
+        <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">20 minutes</span></div>
+      </div>
+    </div>
+    <div class="recipe-right">
+      <div class="recipe-section">
+        <span class="section-label">Ingredients — Serves 2</span>
+        <ul class="ing-list">
+          <li>4 all-beef hot dogs</li>
+          <li>2 ears corn, husked</li>
+          <li>⅓ cup mayonnaise</li>
+          <li>2 oz cotija cheese, finely crumbled</li>
+          <li>1 tsp chili powder or tajín</li>
+          <li>½ tsp smoked paprika</li>
+          <li>2 limes, halved</li>
+          <li>Small handful fresh cilantro, roughly chopped</li>
+          <li>Pinch of cayenne — optional but correct</li>
+        </ul>
+      </div>
+      <div class="recipe-section">
+        <span class="section-label">Preparation</span>
+        <div class="step"><span class="step-n">01</span><span class="step-t">Grill corn directly over high heat, turning every 2–3 minutes, until charred in spots on all sides — about 10 minutes. Set aside without wrapping. The char is the point.</span></div>
+        <div class="step"><span class="step-n">02</span><span class="step-t">Score each hot dog with 4–5 diagonal cuts on each side, deep enough to open slightly when heated. This is not decorative. Surface area is where flavor lives.</span></div>
+        <div class="step"><span class="step-n">03</span><span class="step-t">Grill scored dogs over high heat, turning until caramelized and the cuts have opened and charred at their edges — about 6 minutes total.</span></div>
+        <div class="step"><span class="step-n">04</span><span class="step-t">While still hot, brush both the corn and the dogs generously with mayo. Roll in or dust heavily with cotija, chili powder, and smoked paprika.</span></div>
+        <div class="step"><span class="step-n">05</span><span class="step-t">Squeeze lime aggressively — more than seems reasonable. Scatter cilantro. Add cayenne. Serve everything together on one platter at equal standing. Nobody in my flex spot earned equal standing last season but the food does.</span></div>
+      </div>
+      <div class="recipe-section">
+        <div class="chef-note">
+          <span class="chef-note-lbl">My Note</span>
+          <p>Score the dogs. A round, unscored hot dog on a grill is a missed opportunity, and I have a well-documented talent for those. Four cuts per side, minimum. Commit to the angle. The flex spot rewards preparation, which is something I apparently needed eight months and a punishment week to internalize.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 8: COURSE VII - COMMISSIONER'S BOARD -->
+<div class="page" id="p8">
+  <div class="nav-bar">
+    <span class="nav-course">Course VII · Sunday</span>
+    <span class="nav-title">The Biggest Wiener</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(7)">← Back</button>
+      <button class="nav-btn" onclick="goTo(9)">Next →</button>
+    </div>
+  </div>
+  <div class="recipe-body">
+    <div class="recipe-left">
+      <div class="recipe-image-wrap">
+        <img src="https://images.unsplash.com/photo-1626200419199-391ae4be7a41?w=800&q=80" alt="Hot honey kielbasa board with whipped feta" onerror="this.style.background='#1a1a18'">
+      </div>
+      <div class="recipe-header">
+        <span class="recipe-course-label">Course VII · Sunday Evening</span>
+        <h2 class="recipe-title">The Commissioner's Board</h2>
+        <p class="recipe-subtitle">Hot Honey Kielbasa · Whipped Feta · Accoutrements</p>
+      </div>
+      <div class="recipe-blurb">
+        Trevor built a gold penis on a fork, handed it to a man who deserved it, and then won the championship the very next year like the universe owed him one. <strong>I made kielbasa lacquered enough to catch a reflection and put it next to whipped feta, because if Trevor gets to live like royalty off a trophy shaped like a dick, the least I can do is eat like it too.</strong> Hot honey, brown sugar, a board covered in cornichons and apple and crackers — this is what winning looks like. I wouldn't know from experience this year, but I can at least eat like I do.
+      </div>
+      <div class="recipe-meta-strip">
+        <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">Kielbasa</span></div>
+        <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Skillet caramelize</span></div>
+        <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">Serving board</span></div>
+        <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">15 minutes active</span></div>
+      </div>
+    </div>
+    <div class="recipe-right">
+      <div class="recipe-section">
+        <span class="section-label">Ingredients — Serves 2</span>
+        <ul class="ing-list">
+          <li>1 ring kielbasa (~14 oz), sliced into ½-inch coins</li>
+          <li>2 tbsp hot honey</li>
+          <li>1 tbsp brown sugar</li>
+          <li>8 oz good feta, crumbled</li>
+          <li>3 tbsp good olive oil</li>
+          <li>1 tsp fresh lemon juice</li>
+          <li>1 Honeycrisp apple, very thinly sliced</li>
+          <li>Cornichons, a generous handful</li>
+          <li>GF crackers ⚠️ verify label</li>
+          <li>Fresh thyme, optional</li>
+        </ul>
+      </div>
+      <div class="recipe-section">
+        <span class="section-label">Preparation</span>
+        <div class="step"><span class="step-n">01</span><span class="step-t">Make whipped feta first — ideally the day before: blend crumbled feta, olive oil, and lemon juice until completely smooth, 60–90 seconds. Adjust with olive oil for consistency. Refrigerate with a drizzle of oil on top. It improves overnight.</span></div>
+        <div class="step"><span class="step-n">02</span><span class="step-t">In a skillet over medium-high, add kielbasa coins in a single uncrowded layer with no oil. Sear without touching 2–3 minutes until deeply browned. Flip and repeat.</span></div>
+        <div class="step"><span class="step-n">03</span><span class="step-t">Reduce to medium. Add hot honey and brown sugar directly to the pan. Toss to coat. Cook 2–3 minutes, stirring occasionally, until the glaze darkens and clings. Watch carefully — it burns in under a minute at this stage.</span></div>
+        <div class="step"><span class="step-n">04</span><span class="step-t">Transfer glazed kielbasa immediately to a board while the glaze is still molten. Arrange whipped feta in its bowl, apple slices, cornichons, and crackers in the remaining space. Garnish with thyme if using.</span></div>
+      </div>
+      <div class="recipe-section">
+        <div class="chef-note">
+          <span class="chef-note-lbl">My Note</span>
+          <p>The kielbasa must leave the pan and hit the board while the glaze is still hot and moving. A glaze that cools in the pan loses everything — it goes from lacquered and alive to stuck and dull. I held onto the Saints D/ST all season past the point where any of its warmth was still useful. The kielbasa deserved better judgment than my lineup did.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 9: COURSE VIII - DEAD CAP -->
+<div class="page" id="p9">
+  <div class="nav-bar">
+    <span class="nav-course">Course VIII · Monday</span>
+    <span class="nav-title">The Biggest Wiener</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(8)">← Back</button>
+      <button class="nav-btn" onclick="goTo(10)">Close →</button>
+    </div>
+  </div>
+  <div class="recipe-body">
+    <div class="recipe-left">
+      <div class="recipe-image-wrap">
+        <img src="https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?w=800&q=80" alt="Bacon wrapped hot dogs crispy with mango pico" onerror="this.style.background='#1a1a18'">
+      </div>
+      <div class="recipe-header">
+        <span class="recipe-course-label">Course VIII · Monday Evening — The Final Course</span>
+        <h2 class="recipe-title">The Dead Cap</h2>
+        <p class="recipe-subtitle">Bacon-Wrapped Dog · Chipotle Crema · Mango-Jalapeño Pico</p>
+      </div>
+      <div class="recipe-blurb">
+        Wrapped tight in bacon with zero gaps — <strong>coverage I never once managed on my actual roster.</strong> $53 for three weeks of Malik Nabers still haunts me the way missed field goals haunted my kicker's entire season. This is the last course. It's spicy, it's sweet, and unlike my 2025 campaign, it actually sticks the landing. The punishment is over. I have made peace with none of it. Claude takes over in the fall, and I genuinely believe a language model has better roster instincts than I do at this point, which is not a flattering sentence to type out loud.
+      </div>
+      <div class="recipe-meta-strip">
+        <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef dogs + bacon</span></div>
+        <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Air fryer, spiral-wrapped</span></div>
+        <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">Standalone, plated</span></div>
+        <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">10 min prep · 12 min cook</span></div>
+      </div>
+    </div>
+    <div class="recipe-right">
+      <div class="recipe-section">
+        <span class="section-label">Ingredients — Serves 2</span>
+        <ul class="ing-list">
+          <li>4 all-beef hot dogs</li>
+          <li>8 strips thin-cut bacon — 2 per dog; thick-cut will not fully crisp in time</li>
+          <li>Toothpicks to secure each end</li>
+          <li>½ cup sour cream or Mexican crema</li>
+          <li>1–2 chipotles in adobo, minced + 1 tsp adobo sauce</li>
+          <li>1 ripe mango, diced small</li>
+          <li>1 jalapeño, seeded and minced</li>
+          <li>¼ red onion, very finely diced</li>
+          <li>Juice of 1 lime</li>
+          <li>Small handful cilantro, chopped</li>
+          <li>Kosher salt</li>
+        </ul>
+      </div>
+      <div class="recipe-section">
+        <span class="section-label">Preparation</span>
+        <div class="step"><span class="step-n">01</span><span class="step-t">Make the pico first: combine mango, jalapeño, red onion, lime juice, cilantro, and a pinch of salt. Let sit at minimum 10 minutes. The acid needs time to settle the raw onion, and some things need time to settle.</span></div>
+        <div class="step"><span class="step-n">02</span><span class="step-t">Make the crema: stir together sour cream, minced chipotle, and adobo sauce until smooth. It should be smoky before it's spicy. Refrigerate until serving.</span></div>
+        <div class="step"><span class="step-n">03</span><span class="step-t">Spiral-wrap each hot dog with 2 strips of thin-cut bacon starting at one end, overlapping slightly as you wind toward the other with no gaps. Secure both ends with toothpicks.</span></div>
+        <div class="step"><span class="step-n">04</span><span class="step-t">Air fry at 400°F for 10–13 minutes, turning once at the halfway point, until the bacon is fully, completely, non-negotiably crisped on all surfaces. Press the underside to confirm. If it gives, it needs more time.</span></div>
+        <div class="step"><span class="step-n">05</span><span class="step-t">Remove toothpicks. Spoon chipotle crema onto the plate first. Set dogs on top. Pile mango pico over each one. Serve immediately — the contrast between hot, crisp dog and cold, bright pico is the entire dish and it does not wait.</span></div>
+      </div>
+      <div class="recipe-section">
+        <div class="chef-note">
+          <span class="chef-note-lbl">My Note</span>
+          <p>Thin-cut bacon. Non-negotiable. Thick-cut produces a soft exterior on an overcooked interior, which is exactly what Jake Moody gave me all season — missed ten field goals, still started every week, still somehow my problem. Use thin-cut. Cut your losses earlier than I did. These are the two lessons this season taught me and only one of them applies to cooking.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 10: COLOPHON -->
+<div class="page" id="p10">
+  <div class="nav-bar">
+    <span class="nav-course">Fin.</span>
+    <span class="nav-title">The Biggest Wiener</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(9)">← Back</button>
+      <button class="nav-btn" onclick="goTo(1)">Menu</button>
+    </div>
+  </div>
+  <div class="colophon-body">
+    <div class="colophon-hr"></div>
+    <h2 class="colophon-title">The Sentence Has Been Served.</h2>
+    <div class="colophon-text">
+      <p>Eight courses. One protein, prepared seven filthy ways. A 6-8 record that will be referenced at next year's draft in ways I have already accepted. Trevor built a golden hot dog trophy, named it "The Biggest Wiener," and the universe rewarded his audacity with a championship the very next season. McGlynn christened it first. I'm the second man in Devaraiders history to accept this trophy intimately, and I intend to handle it with more grace than I handled my roster.</p>
+
+      <p>Russell went 10-4 and still can't hold a relationship together for three weeks, which — coincidentally — is exactly how long Malik Nabers lasted on my roster before I paid $53 to watch him land on IR. JP is moving in with someone, which remains the most shocking development of the entire 2025 season, mine included. Jordan talked the most and won the least, a ratio that should be studied.</p>
+
+      <p>This fall, Claude runs the team. An AI with no emotional attachment to injured keepers, no loyalty to a DST that hasn't earned it, and no capacity to watch tape on a washed running back and think "one more year." If the Waivers of Rohan finish last again, it's the machine's fault and I'll have documentation. If we win, I'm taking full credit.</p>
+
+      <p>The hot dogs were better than they had any right to be. I cooked better this week than I managed my roster all season. I do not know what to do with that. The league does not care. The draft is in August.</p>
+    </div>
+    <p class="colophon-meta">The Biggest Wiener · Devaraiders · 2025 Season · Blake Kelly · Waivers of Rohan · 6-8 · 12th of 12 · All Dishes Gluten-Free</p>
+  </div>
+</div>
+
+<div class="page-indicator" id="pips"></div>
+
+<script>
+  const TOTAL = 11;
+  let current = 0;
+  const pipsEl = document.getElementById('pips');
+  for (let i = 0; i < TOTAL; i++) {
+    const pip = document.createElement('div');
+    pip.className = 'pip' + (i === 0 ? ' active' : '');
+    pip.onclick = () => goTo(i);
+    pipsEl.appendChild(pip);
+  }
+  function goTo(n) {
+    if (n < 0 || n >= TOTAL) return;
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.pip').forEach((p, i) => p.classList.toggle('active', i === n));
+    const target = document.getElementById('p' + n);
+    if (target) target.classList.add('active');
+    current = n;
+    window.scrollTo(0, 0);
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') goTo(current + 1);
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+  });
+</script>
+</body>
+</html>
