@@ -1,0 +1,5 @@
+# The Biggest Wiener — not for search engines.
+# Shared by direct link only.
+
+User-agent: *
+Disallow: /
