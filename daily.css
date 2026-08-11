@@ -369,7 +369,32 @@ body {
   font-weight: 400;
   line-height: 1.2;
   color: var(--bone);
+  transition: color 0.2s;
 }
+.menu-card-link { display: block; text-decoration: none; color: inherit; }
+.menu-card-link:hover .menu-card-name { color: var(--gold-light); }
+
+/* PAGE NAV */
+.pagenav {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 2.5rem 2rem 0;
+}
+.pagenav-btn {
+  background: none;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 0.8rem 1.75rem;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.pagenav-btn:hover { background: var(--gold); color: var(--black); }
 
 @media (max-width: 680px) {
   .menu-hero { padding: 3rem 1.5rem 2.5rem; }
