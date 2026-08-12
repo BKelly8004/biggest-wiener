@@ -128,6 +128,25 @@ body {
   color: rgba(138,130,120,0.5);
 }
 
+/* TROPHY */
+.trophy {
+  max-width: 300px;
+  margin: 0 auto 3rem;
+  padding: 0.6rem;
+  border: 1px solid var(--rule);
+  background: rgba(184,150,90,0.05);
+}
+.trophy img { width: 100%; height: auto; display: block; }
+.trophy figcaption {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: center;
+  padding-top: 0.7rem;
+}
+
 /* MENU HEAD */
 .menu-head {
   padding: 3rem 2.5rem 0;
