@@ -4,53 +4,672 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>The Biggest Wiener — A Cookbook</title>
-<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>The Biggest Wiener — Day 1 of 8</title>
+<meta property="og:type" content="article">
 <meta property="og:site_name" content="The Biggest Wiener">
-<meta property="og:title" content="The Biggest Wiener — A Cookbook">
-<meta property="og:description" content="Eight courses. One protein. Every dish gluten-free. Devaraiders 2025.">
-<meta property="og:image" content="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=1200&q=80">
+<meta property="og:title" content="The Biggest Wiener — Day 1 of 8">
+<meta property="og:description" content="A punishment cookbook. Eight courses, one protein, released a day at a time.">
+<meta property="og:image" content="https://bkelly8004.github.io/biggest-wiener/images/trophy.jpg">
 <meta property="og:url" content="https://bkelly8004.github.io/biggest-wiener/">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Courier+Prime:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="daily.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0A0A0A;
+  --charcoal: #161613;
+  --bone: #F2EDE4;
+  --gold: #B8965A;
+  --gold-light: #D4B07A;
+  --muted: #7A7468;
+  --rule: rgba(184, 150, 90, 0.28);
+  --page-w: 900px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #111;
+  color: var(--bone);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  width: 100%;
+  max-width: var(--page-w);
+  min-height: 100vh;
+  margin: 0 auto;
+  display: none;
+  flex-direction: column;
+  background: var(--black);
+  border-left: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+  position: relative;
+}
+.page.active { display: flex; }
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 2.5rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--charcoal);
+  flex-shrink: 0;
+}
+.nav-course {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.nav-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--muted);
+  text-align: center;
+  flex: 1;
+  padding: 0 1rem;
+}
+.nav-controls { display: flex; gap: 0.5rem; align-items: center; }
+.nav-btn {
+  background: none;
+  border: 1px solid var(--rule);
+  color: var(--gold);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.nav-btn:hover { background: var(--gold); color: var(--black); }
+.nav-btn:disabled { opacity: 0.25; cursor: default; }
+.nav-btn:disabled:hover { background: none; color: var(--gold); }
+
+/* COVER */
+.cover-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5rem 3rem;
+  background: radial-gradient(ellipse at center, #1e1a14 0%, #0A0A0A 75%);
+}
+.cover-eyebrow {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2.5rem;
+}
+.cover-hr { width: 48px; height: 1px; background: var(--gold); margin: 0 auto 2.5rem; }
+.trophy {
+  max-width: 300px;
+  margin: 0 auto 3rem;
+  padding: 0.6rem;
+  border: 1px solid var(--rule);
+  background: rgba(184,150,90,0.05);
+}
+.trophy img { width: 100%; height: auto; display: block; }
+.trophy figcaption {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: center;
+  padding-top: 0.7rem;
+}
+.cover-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 400;
+  line-height: 1.0;
+  color: var(--bone);
+  margin-bottom: 0.4rem;
+}
+.cover-title em { font-style: italic; color: var(--gold-light); }
+.cover-sub {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(0.95rem, 2.5vw, 1.35rem);
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 3rem;
+  letter-spacing: 0.03em;
+}
+.cover-intro {
+  font-size: 1.05rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.95;
+  color: rgba(242,237,228,0.6);
+  max-width: 580px;
+  margin: 0 auto 3.5rem;
+  text-align: left;
+}
+.cover-intro p { margin-bottom: 1.25rem; }
+.cover-intro p:last-child { margin-bottom: 0; }
+.cover-meta {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(138,130,120,0.5);
+}
+.cover-start {
+  margin-top: 3rem;
+  background: none;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.cover-start:hover { background: var(--gold); color: var(--black); }
+
+/* TOC */
+.toc-body {
+  flex: 1;
+  padding: 4rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.toc-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2.5rem;
+  display: block;
+}
+.toc-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+  cursor: pointer;
+  transition: color 0.2s;
+  text-decoration: none;
+  color: var(--bone);
+  gap: 1.25rem;
+}
+.toc-item:hover { color: var(--gold-light); }
+.toc-item:first-of-type { border-top: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  width: 2.5rem;
+  flex-shrink: 0;
+  padding-top: 0.3rem;
+}
+.toc-dish-wrap { flex: 1; }
+.toc-dish { font-family: 'Playfair Display', serif; font-size: 1.15rem; display: block; }
+.toc-dish-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.88rem;
+  display: block;
+  margin-top: 0.2rem;
+  line-height: 1.5;
+}
+.toc-dish-quip {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: rgba(184,150,90,0.65);
+  font-size: 0.82rem;
+  display: block;
+  margin-top: 0.15rem;
+  line-height: 1.5;
+}
+.toc-weekday {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  padding-top: 0.3rem;
+}
+
+/* RECIPE PAGE */
+.recipe-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 0;
+}
+.recipe-left {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--rule);
+  overflow: hidden;
+}
+.recipe-image-wrap {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+.recipe-image-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(10,10,10,0.6) 100%);
+  pointer-events: none;
+}
+.recipe-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.8) contrast(1.08);
+  transition: transform 0.7s ease;
+}
+.recipe-image-wrap:hover img { transform: scale(1.04); }
+.recipe-header {
+  padding: 2rem 2.25rem 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.recipe-course-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.recipe-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 3vw, 1.95rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--bone);
+  margin-bottom: 0.3rem;
+}
+.recipe-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--gold-light);
+  letter-spacing: 0.04em;
+}
+.recipe-blurb {
+  padding: 1.75rem 2.25rem;
+  font-size: 1.02rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.9;
+  color: rgba(242,237,228,0.68);
+  flex: 1;
+}
+.recipe-blurb strong { font-style: normal; font-weight: 400; color: var(--bone); }
+.recipe-meta-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--rule);
+  flex-shrink: 0;
+}
+.meta-cell { padding: 0.9rem 1.25rem; border-right: 1px solid var(--rule); }
+.meta-cell:last-child { border-right: none; }
+.meta-cell:nth-child(3), .meta-cell:nth-child(4) { border-top: 1px solid var(--rule); }
+.meta-key {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.meta-val { font-family: 'Cormorant Garamond', serif; font-size: 0.92rem; font-style: italic; color: var(--bone); }
+
+/* RIGHT COLUMN */
+.recipe-right {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: calc(100vh - 52px);
+}
+.recipe-section { padding: 1.75rem 2.25rem; border-bottom: 1px solid var(--rule); }
+.recipe-section:last-child { border-bottom: none; flex: 1; }
+.section-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 1.1rem;
+}
+.ing-list { list-style: none; }
+.ing-list li {
+  font-size: 0.93rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: rgba(242,237,228,0.72);
+  padding: 0.35rem 0 0.35rem 1.1rem;
+  border-bottom: 1px solid rgba(184,150,90,0.1);
+  position: relative;
+}
+.ing-list li:last-child { border-bottom: none; }
+.ing-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 0.65rem; top: 0.45rem; }
+.step { display: flex; gap: 1rem; margin-bottom: 1.1rem; }
+.step:last-child { margin-bottom: 0; }
+.step-n {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-top: 0.22rem;
+  flex-shrink: 0;
+  width: 1.4rem;
+}
+.step-t { font-size: 0.92rem; font-weight: 300; line-height: 1.75; color: rgba(242,237,228,0.7); }
+.chef-note { border-left: 2px solid var(--gold); padding: 1rem 1.25rem; background: rgba(184,150,90,0.05); }
+.chef-note-lbl {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.chef-note p { font-size: 0.88rem; font-style: italic; font-weight: 300; line-height: 1.8; color: rgba(242,237,228,0.58); }
+
+/* COLOPHON */
+.colophon-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5rem 3rem;
+  background: radial-gradient(ellipse at center, #1a160f 0%, #0A0A0A 75%);
+}
+.colophon-hr { width: 48px; height: 1px; background: var(--gold); margin: 0 auto 2.5rem; }
+.colophon-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--bone);
+  margin-bottom: 1.5rem;
+}
+.colophon-text {
+  font-size: 1.05rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.95;
+  color: var(--muted);
+  max-width: 500px;
+  margin: 0 auto 3rem;
+  text-align: left;
+}
+.colophon-text p { margin-bottom: 1rem; }
+.colophon-text p:last-child { margin-bottom: 0; }
+.colophon-meta {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(138,130,120,0.4);
+}
+
+.page-indicator {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+  z-index: 100;
+}
+.pip {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--rule);
+  border: 1px solid var(--gold);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.pip.active { background: var(--gold); }
+
+/* locked / unreleased courses */
+.toc-item.locked { opacity: 0.3; cursor: default; }
+.toc-item.locked:hover { color: var(--bone); }
+.toc-item.locked .toc-dish {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--muted);
+}
+.recipe-spacer { flex: 1; }
+
+@media (max-width: 680px) {
+  .recipe-body { grid-template-columns: 1fr; }
+  .recipe-left { border-right: none; border-bottom: 1px solid var(--rule); }
+  .recipe-right { max-height: none; overflow-y: visible; }
+  .nav-title { display: none; }
+  .toc-body { padding: 2.5rem 1.5rem; }
+}
+</style>
 </head>
 <body>
-<div class="sheet">
 
-  <header class="bar">
-    <span class="bar-left">The Biggest Wiener</span>
-    <span class="bar-center">Devaraiders · 2025</span>
-    <span class="bar-right">Eight Courses</span>
-  </header>
-
-  <section class="intro">
-    <p class="intro-eyebrow">Devaraiders Fantasy Football · 2025 Season</p>
-    <div class="hr-gold"></div>
-    <h1 class="intro-title">The Biggest<br><em>Wiener</em></h1>
-    <p class="intro-sub">A Cookbook</p>
-    <div class="hr-gold"></div>
-    <div class="intro-body">
-      <p>Eight days. One protein, prepared eight ways — smashed, wrapped, seared, glazed, and once, memorably, served raw under a yolk. A course a night, released one at a time.</p>
-
-      <p>Every dish serves two. Every dish is gluten-free. Nothing here is complicated; most of it is done inside half an hour.</p>
+<!-- PAGE 0: COVER -->
+<div class="page active" id="p0">
+  <div class="nav-bar">
+    <span class="nav-course">The Biggest Wiener · Devaraiders 2025</span>
+    <span class="nav-title">Waivers of Rohan · Blake Kelly</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(1)">Enter →</button>
     </div>
-    <p class="intro-meta">Gluten-Free · Serves Two · Eight Courses</p>
-    <nav class="pagenav">
-      <a class="pagenav-btn" href="menu.html">The Menu</a>
-      <a class="pagenav-btn" href="day8.html">The Recipes</a>
-    </nav>
-  </section>
+  </div>
+  <div class="cover-body">
+    <p class="cover-eyebrow">Devaraiders Fantasy Football · 2025 Season · A Punishment Cookbook</p>
+    <div class="cover-hr"></div>
+    <h1 class="cover-title">The Biggest<br><em>Wiener</em></h1>
+    <p class="cover-sub">A Cookbook</p>
+    <div class="cover-hr"></div>
+    <figure class="trophy">
+      <img src="images/trophy.jpg" alt="The Biggest Wiener trophy: a gold hot dog impaled on a fork, mounted on a walnut base with a plaque reading GLORIOUSLY LAST: FANTASY FOOTBALL'S FINEST" onerror="this.closest('.trophy').style.display='none'">
+      <figcaption>Gloriously Last</figcaption>
+    </figure>
+    <div class="cover-intro">
+      <p>I went 6-8, missed the playoffs by a hair, and then — instead of quietly disappearing into the offseason like a normal person — I fought my way through the loser's bracket for four straight weeks to specifically finish last. Nobody works that hard for anything good in their life. I found out I could commit to something. Unfortunately it was becoming the worst general manager in Devaraiders history.</p>
 
-  <footer class="foot">
-    <div class="hr-gold"></div>
-    <p class="foot-meta">
-      The Biggest Wiener · Devaraiders · 2025<br>
-      All Dishes Gluten-Free · Serves Two
-    </p>
-  </footer>
+      <p>My punishment: build an entire cookbook centered on phallic-shaped meat, which honestly should've gone to Russell given how much time he spends thinking about them. I got the trophy. He just got jealous.</p>
 
+      <p>I paid $53 to keep Malik Nabers, who lasted three weeks before his hamstring made better life decisions than I did all season. Russell went 10-4 this season, by the way — turns out the man can build a fantasy roster, just not a relationship, which tracks, since both require you to stick with a bad decision past week three and Russell's never done that in his life. JP, a man so historically opposed to human connection that monks find him aloof, is now moving in with a woman, which is statistically more surprising than anything that happened in my lineup last season. And I started Sam Darnold at quarterback, so the bar was already underground.</p>
+
+      <p>McGlynn christened "The Biggest Wiener" last season — a gold trophy of a hot dog on a fork, mounted on a wooden base with a plaque that reads, without a trace of irony, "GLORIOUSLY LAST: FANTASY FOOTBALL'S FINEST." Trevor commissioned it with the deranged confidence of a man who knew the universe owed him one. McGlynn introduced it to his bootyhole in ways he's declined to elaborate on and the rest of us have declined to ask about. McGlynn then went 10-4 this season. I am now the trophy's second intimate recipient. I have made my peace with this. I have also made an appointment.</p>
+
+      <p>Jordan talks more shit before kickoff than anyone in this league backs up all season, somehow winning less than his own trash talk would suggest is mathematically possible.</p>
+
+      <p>I've since handed roster management to Claude — an AI — because at some point the machine has to outperform the man who started the Saints D/ST for the better part of a season while they lost games in ways that felt personally targeted. Claude cannot fall in love with a $53 keeper. Claude has never once looked at an injury report and thought "he'll play through it." Claude does not have feelings. We are going to be fine.</p>
+
+      <p>What follows is my sentence. Eight days. One protein, prepared seven filthy ways. I earned every bite by actively trying.</p>
+    </div>
+    <p class="cover-meta">Gluten-Free · Serves Two · 6-8 · 12th of 12 · Dignity Not Included</p>
+    <button class="cover-start" onclick="goTo(1)">View the Menu</button>
+  </div>
 </div>
+
+
+<!-- PAGE 1: TOC -->
+<div class="page" id="p1">
+  <div class="nav-bar">
+    <span class="nav-course">The Courses</span>
+    <span class="nav-title">The Biggest Wiener · Day 1 of 8</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(0)">← Back</button>
+      <button class="nav-btn" onclick="goTo(2)">Next →</button>
+    </div>
+  </div>
+  <div class="toc-body">
+    <span class="toc-label">Course I · Released Through Day 1</span>
+    <div class="toc-item" onclick="goTo(2)">
+      <span class="toc-num">I</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">The Waiver Wire Special</span>
+        <span class="toc-dish-sub">Smashed All-Beef Dog · Corn Tortilla · Chipotle Emulsion</span>
+      </div>
+      <span class="toc-weekday">Monday</span>
+    </div>
+    <div class="toc-item locked">
+      <span class="toc-num">II</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">Coming Soon</span>
+      </div>
+      <span class="toc-weekday">Tuesday</span>
+    </div>
+    <div class="toc-item locked">
+      <span class="toc-num">III</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">Coming Soon</span>
+      </div>
+      <span class="toc-weekday">Wednesday</span>
+    </div>
+    <div class="toc-item locked">
+      <span class="toc-num">IV</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">Coming Soon</span>
+      </div>
+      <span class="toc-weekday">Thursday</span>
+    </div>
+    <div class="toc-item locked">
+      <span class="toc-num">V</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">Coming Soon</span>
+      </div>
+      <span class="toc-weekday">Friday</span>
+    </div>
+    <div class="toc-item locked">
+      <span class="toc-num">VI</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">Coming Soon</span>
+      </div>
+      <span class="toc-weekday">Saturday</span>
+    </div>
+    <div class="toc-item locked">
+      <span class="toc-num">VII</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">Coming Soon</span>
+      </div>
+      <span class="toc-weekday">Sunday</span>
+    </div>
+    <div class="toc-item locked">
+      <span class="toc-num">VIII</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">Coming Soon</span>
+      </div>
+      <span class="toc-weekday">Monday</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: COURSE I -->
+<div class="page" id="p2">
+  <div class="nav-bar">
+    <span class="nav-course">Course I · Monday</span>
+    <span class="nav-title">The Biggest Wiener</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(1)">← Back</button>
+      <button class="nav-btn" onclick="goTo(1)">Menu</button>
+    </div>
+  </div>
+  <div class="recipe-body">
+    <div class="recipe-left">
+      <div class="recipe-image-wrap">
+        <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=800&q=80" alt="Smash hot dog tacos" onerror="this.style.background='#1a1a18'">
+      </div>
+      <div class="recipe-header">
+        <span class="recipe-course-label">Course I · Monday Evening</span>
+        <h2 class="recipe-title">The Waiver Wire Special</h2>
+        <p class="recipe-subtitle">Smashed All-Beef Dog · Corn Tortilla · Chipotle Emulsion</p>
+      </div>
+      <div class="recipe-spacer"></div>
+      <div class="recipe-meta-strip">
+        <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef hot dogs</span></div>
+        <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Cast iron smash</span></div>
+        <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">GF corn tortillas</span></div>
+        <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">15 minutes</span></div>
+      </div>
+    </div>
+    <div class="recipe-right">
+      <div class="recipe-section">
+        <span class="section-label">Ingredients — Serves 2</span>
+        <ul class="ing-list">
+          <li>4 all-beef hot dogs, split lengthwise</li>
+          <li>6 GF corn tortillas</li>
+          <li>½ cup mayonnaise + 1–2 chipotles in adobo, blended smooth</li>
+          <li>1½ cups green cabbage, very thinly shaved</li>
+          <li>¼ cup pickled jalapeños</li>
+          <li>2 oz cotija cheese, crumbled</li>
+          <li>1 lime, cut into wedges</li>
+          <li>Neutral oil, kosher salt</li>
+        </ul>
+      </div>
+      <div class="recipe-section">
+        <span class="section-label">Preparation</span>
+        <div class="step"><span class="step-n">01</span><span class="step-t">Heat a cast iron skillet over high heat until smoking. Add a thin film of neutral oil.</span></div>
+        <div class="step"><span class="step-n">02</span><span class="step-t">Place hot dogs cut-side down. Smash firmly with a heavy spatula and hold for 30 seconds. Do not touch them again. Let the crust build undisturbed for 2–3 minutes until deeply mahogany — darker than feels right.</span></div>
+        <div class="step"><span class="step-n">03</span><span class="step-t">Flip and sear the skin side 60 seconds. Rest on a wire rack, not paper towels. The crust deserves air.</span></div>
+        <div class="step"><span class="step-n">04</span><span class="step-t">Warm tortillas directly over a gas flame or dry pan until lightly charred at the edges.</span></div>
+        <div class="step"><span class="step-n">05</span><span class="step-t">Spread chipotle mayo on each tortilla. Place one smashed dog half per taco. Top with cabbage, jalapeños, cotija. Finish with an aggressive squeeze of lime and flaky salt.</span></div>
+      </div>
+  </div>
+</div>
+
+
+<div class="page-indicator" id="pips"></div>
+
+<script>
+  const TOTAL = 3;
+  let current = 0;
+  const pipsEl = document.getElementById('pips');
+  for (let i = 0; i < TOTAL; i++) {
+    const pip = document.createElement('div');
+    pip.className = 'pip' + (i === 0 ? ' active' : '');
+    pip.onclick = () => goTo(i);
+    pipsEl.appendChild(pip);
+  }
+  function goTo(n) {
+    if (n < 0 || n >= TOTAL) return;
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.pip').forEach((p, i) => p.classList.toggle('active', i === n));
+    const target = document.getElementById('p' + n);
+    if (target) target.classList.add('active');
+    current = n;
+    window.scrollTo(0, 0);
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') goTo(current + 1);
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+  });
+</script>
 </body>
 </html>
