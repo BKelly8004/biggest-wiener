@@ -1,3 +1,6 @@
 # camera originals - converted copies are what ship
 images/*.heic
 images/*.HEIC
+
+# local dev context - real names/roast material, not for the public repo
+CLAUDE.md
