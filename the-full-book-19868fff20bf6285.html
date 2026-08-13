@@ -390,6 +390,77 @@ body {
   margin-bottom: 0.5rem;
 }
 .chef-note p { font-size: 0.88rem; font-style: italic; font-weight: 300; line-height: 1.8; color: rgba(242,237,228,0.58); }
+.recipe-pairing {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--gold-light);
+  margin-top: 0.7rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--rule);
+}
+
+/* mock nutrition label */
+.nutrition { border: 1px solid var(--gold); padding: 0.9rem 1rem; background: rgba(184,150,90,0.04); }
+.nutrition-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: var(--bone);
+  border-bottom: 5px solid var(--gold);
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+.nutrition-serving {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+  line-height: 1.9;
+  color: rgba(242,237,228,0.7);
+  border-bottom: 3px solid var(--rule);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+.nutrition-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.9rem;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+  border-bottom: 1px solid rgba(184,150,90,0.16);
+  padding: 0.32rem 0;
+}
+.nutrition-row span:last-child { color: rgba(242,237,228,0.82); text-align: right; }
+.nutrition-ing {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(242,237,228,0.6);
+  padding: 0.6rem 0;
+  border-bottom: 3px solid var(--rule);
+}
+.nutrition-ing em { font-style: normal; color: var(--gold); }
+.nutrition-dv {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  padding-top: 0.55rem;
+}
+.nutrition-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(242,237,228,0.55);
+  padding-top: 0.3rem;
+}
 
 /* COLOPHON */
 .colophon-body {
@@ -606,9 +677,10 @@ body {
         <span class="recipe-course-label">Course I · Monday Evening</span>
         <h2 class="recipe-title">The Waiver Wire Special</h2>
         <p class="recipe-subtitle">Charred Whole Dog · Corn Tortilla · Chipotle Emulsion</p>
+        <p class="recipe-pairing">Pairs with a can of Busch Light, room temperature, from the twelve-pack nobody claimed at the draft party</p>
       </div>
       <div class="recipe-blurb">
-        I scored a hot dog in a tight crosshatch and grilled it whole over screaming heat because sometimes the only way to get something to perform is to apply pressure it never consented to — a philosophy I discovered too late applies to fantasy rosters, not just meat. <strong>This dog showed up off the waiver wire and outworked guys I paid real money for,</strong> which is the most backhanded compliment I can give a piece of processed pork. Nick Westbrook-Ikhine, 25% owned, started in my flex out of sheer desperation, quietly did more for my team in week fourteen than Malik Nabers did on my bench all season with 1,200 receiving yards and zero say in the matter. That was the week I beat JP by 2.02. He returned it with interest in week fifteen, 96.56 to 80.82, which is about the shelf life of anything good that happened to me in 2025.
+        I scored a hot dog in a tight crosshatch and grilled it whole over screaming heat because sometimes the only way to get something to perform is to apply pressure it never consented to — a philosophy I discovered too late applies to fantasy rosters, not just meat. <strong>This dog showed up off the waiver wire and outworked guys I paid real money for,</strong> which is the most backhanded compliment I can give a piece of processed pork. Nick Westbrook-Ikhine, 25% owned, quietly did more for my team than Malik Nabers did on my bench all season with 1,200 receiving yards and zero say in the matter. None of it mattered in week one, when McGlynn's team put up 89.92 to my 82.96 and I found out in real time what the next fourteen weeks were going to feel like. He'd do it again in week twelve. I did not learn anything in between.
       </div>
       <div class="recipe-meta-strip">
         <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef hot dogs</span></div>
@@ -646,6 +718,19 @@ body {
         </div>
       </div>
     </div>
+      <div class="recipe-section">
+        <div class="nutrition">
+          <div class="nutrition-title">Nutrition Facts</div>
+          <div class="nutrition-serving">Serving Size: 1 Season Opener<br>Servings Per Container: 14 (regular season), plus 3 more nobody wanted</div>
+          <div class="nutrition-row"><span>Week</span><span>1</span></div>
+          <div class="nutrition-row"><span>Opponent</span><span>The Hospital</span></div>
+          <div class="nutrition-row"><span>Score</span><span>82.96–89.92</span></div>
+          <div class="nutrition-row"><span>Margin</span><span>Lost by 6.96</span></div>
+          <p class="nutrition-ing"><em>Ingredients:</em> Contains false optimism, a roster you were still proud of, zero warning signs</p>
+          <div class="nutrition-dv"><span>% Daily Value of Regret</span><span>5%</span></div>
+          <p class="nutrition-note">this one still felt like bad luck</p>
+        </div>
+      </div>
   </div>
 </div>
 
@@ -668,6 +753,7 @@ body {
         <span class="recipe-course-label">Course II · Tuesday Evening</span>
         <h2 class="recipe-title">Pigs in a Playoff Blanket</h2>
         <p class="recipe-subtitle">Upside-Down Puff Pastry Dog · Gruyère · Everything Crust</p>
+        <p class="recipe-pairing">Pairs with Two-Buck Chuck, the red, until the color in the glass and the color coming back up are the same shade</p>
       </div>
       <div class="recipe-blurb">
         Wrapped in pastry, flipped upside down, baked until the cheese underneath crisps into something lacquered and completely disconnected from what's actually inside. <strong>This dog made the postseason. I did not.</strong> It's handling that better than I am. I scored 1,327 points across the season — dead last in a twelve-team league, about 300 behind the champion — which is not a slump, it's a personality. The pastry only has to hold together for twenty minutes. I had four months.
@@ -707,6 +793,19 @@ body {
         </div>
       </div>
     </div>
+      <div class="recipe-section">
+        <div class="nutrition">
+          <div class="nutrition-title">Nutrition Facts</div>
+          <div class="nutrition-serving">Serving Size: 1 Sophomore Slump</div>
+          <div class="nutrition-row"><span>Week</span><span>2</span></div>
+          <div class="nutrition-row"><span>Opponent</span><span>Juicy J Can't (Jordan)</span></div>
+          <div class="nutrition-row"><span>Score</span><span>101.70–125.88</span></div>
+          <div class="nutrition-row"><span>Margin</span><span>Lost by 24.18</span></div>
+          <p class="nutrition-ing"><em>Ingredients:</em> Contains an early loss to the guy who'd finish 4-10, a preview of a rivalry neither of you asked for</p>
+          <div class="nutrition-dv"><span>% Daily Value of Regret</span><span>20%</span></div>
+          <p class="nutrition-note">bad luck stops being the excuse around here</p>
+        </div>
+      </div>
   </div>
 </div>
 
@@ -729,6 +828,7 @@ body {
         <span class="recipe-course-label">Course III · Wednesday Evening</span>
         <h2 class="recipe-title">Tartare of Last Resort</h2>
         <p class="recipe-subtitle">All-Beef Hot Dog · Capers · Dijon · Shallot · Raw Egg Yolk</p>
+        <p class="recipe-pairing">Pairs with a shot of Malort, taken the way you take bad news — fast, and without asking anyone to explain it first</p>
       </div>
       <div class="recipe-blurb">
         Finely diced, plated with a raw yolk on top like it's trying to seduce someone at a wedding. <strong>It's a hot dog wearing a tuxedo it stole.</strong> Ring mold, capers, shallot, dijon, the whole classical French treatment applied to $53 worth of processed pork that lasted exactly as long as Malik Nabers did on my roster — three weeks, no explanation, gone before anyone looked too closely. I served it with a straight face and zero regrets, the same energy I brought to every start/sit decision that ruined my season.
@@ -770,6 +870,19 @@ body {
         </div>
       </div>
     </div>
+      <div class="recipe-section">
+        <div class="nutrition">
+          <div class="nutrition-title">Nutrition Facts</div>
+          <div class="nutrition-serving">Serving Size: 1 Brief Reprieve</div>
+          <div class="nutrition-row"><span>Week</span><span>3</span></div>
+          <div class="nutrition-row"><span>Opponent</span><span>Who diddled Kittle? (JP)</span></div>
+          <div class="nutrition-row"><span>Score</span><span>106.62–95.52</span></div>
+          <div class="nutrition-row"><span>Margin</span><span>Won by 11.10</span></div>
+          <p class="nutrition-ing"><em>Ingredients:</em> Contains a win, momentum, a false sense that the season had turned a corner</p>
+          <div class="nutrition-dv"><span>% Daily Value of Regret</span><span>0%</span></div>
+          <p class="nutrition-note">savor it, you earned exactly one week of feeling fine</p>
+        </div>
+      </div>
   </div>
 </div>
 
@@ -792,6 +905,7 @@ body {
         <span class="recipe-course-label">Course IV · Thursday Evening — The Centerpiece</span>
         <h2 class="recipe-title">Fourth and Wellington</h2>
         <p class="recipe-subtitle">Hot Dog Wellington · Mushroom Duxelles · Prosciutto · GF Puff Pastry</p>
+        <p class="recipe-pairing">Pairs with whatever's left in the fridge after a 61-point loss, served at the temperature of a locker room an hour after the game ended</p>
       </div>
       <div class="recipe-blurb">
         Forty-five minutes of prep to wrap a hot dog in prosciutto, mushrooms, and pastry, and it came out of the oven better than any decision I made between September and December. <strong>In week four Trevor put 158.82 on me, I lost by 61.04, and my response was to drop Lamar Jackson.</strong> A former MVP, cut loose the same week I got run out of the building by the team that went on to win the whole thing. I picked up Dak Prescott and rode him the rest of the way like a man who had learned something. The pastry shatters. The inside is exactly what it said it would be, which makes it the only thing all year that was.
@@ -835,6 +949,19 @@ body {
         </div>
       </div>
     </div>
+      <div class="recipe-section">
+        <div class="nutrition">
+          <div class="nutrition-title">Nutrition Facts</div>
+          <div class="nutrition-serving">Serving Size: 1 Rock Bottom</div>
+          <div class="nutrition-row"><span>Week</span><span>4</span></div>
+          <div class="nutrition-row"><span>Opponent</span><span>O-Bijan Kenobi (Trevor, eventual champion)</span></div>
+          <div class="nutrition-row"><span>Score</span><span>97.78–158.82</span></div>
+          <div class="nutrition-row"><span>Margin</span><span>Lost by 61.04</span></div>
+          <p class="nutrition-ing"><em>Ingredients:</em> Contains a former MVP quarterback dropped the same week, the exact moment this stopped being a slow start and became a diagnosis</p>
+          <div class="nutrition-dv"><span>% Daily Value of Regret</span><span>100%</span></div>
+          <p class="nutrition-note">the champion did this to you in week four and never had to think about you again</p>
+        </div>
+      </div>
   </div>
 </div>
 
@@ -857,6 +984,7 @@ body {
         <span class="recipe-course-label">Course V · Friday Evening</span>
         <h2 class="recipe-title">The Cannelloni Consolation</h2>
         <p class="recipe-subtitle">Bratwurst-Stuffed Cannelloni · Sun-Dried Tomato Cream · Baked</p>
+        <p class="recipe-pairing">Pairs with a warm Natty Light found under the couch, consolation bracket rules apply to beverages too</p>
       </div>
       <div class="recipe-blurb">
         The sauce alone has ended engagements in the good direction. I stuffed a whole bratwurst inside a cannelloni tube, baked it in that same sun-dried tomato cream until the pasta went tender and the brat cooked through, then sliced it down the middle so the cross-section does the talking. Nothing else I made this year survived being opened up and looked at. <strong>I finished with the fewest points in a twelve-team league — not the fewest wins, the fewest points.</strong> Two teams had worse records than me and still outscored me. That's not variance, that's a signature.
@@ -900,6 +1028,19 @@ body {
         </div>
       </div>
     </div>
+      <div class="recipe-section">
+        <div class="nutrition">
+          <div class="nutrition-title">Nutrition Facts</div>
+          <div class="nutrition-serving">Serving Size: 1 Second Helping of the Same Beating</div>
+          <div class="nutrition-row"><span>Week</span><span>6</span></div>
+          <div class="nutrition-row"><span>Opponent</span><span>Touchdown Tommy</span></div>
+          <div class="nutrition-row"><span>Score</span><span>77.34–125.62</span></div>
+          <div class="nutrition-row"><span>Margin</span><span>Lost by 48.28</span></div>
+          <p class="nutrition-ing"><em>Ingredients:</em> Contains the second-worst beating of the season, proof that week four wasn't a fluke, it was a genre</p>
+          <div class="nutrition-dv"><span>% Daily Value of Regret</span><span>80%</span></div>
+          <p class="nutrition-note">silver medal in getting demolished, still a medal</p>
+        </div>
+      </div>
   </div>
 </div>
 
@@ -922,6 +1063,7 @@ body {
         <span class="recipe-course-label">Course VI · Saturday Evening</span>
         <h2 class="recipe-title">The Flex Spot</h2>
         <p class="recipe-subtitle">Grilled All-Beef Dog · Full Elote Treatment · Charred Corn</p>
+        <p class="recipe-pairing">Pairs with Milwaukee's Best, drunk with the same commitment you gave your flex spot all season — none</p>
       </div>
       <div class="recipe-blurb">
         Scored, charred, and dressed up in mayo, cotija, and lime. The corn gets the same treatment and the corn earned it. My flex spot spent the season on Juwan Johnson and a prayer, and it caught up with me in week sixteen — 111.56 to 111.78, a loss by 0.22 points, to Jordan, who finished 4-10 to my 6-8. <strong>A man two games worse than me needed a quarter of a point to bury me and got it.</strong> I thought about that the entire time I was scoring these dogs. The knife helped.
@@ -963,6 +1105,17 @@ body {
         </div>
       </div>
     </div>
+      <div class="recipe-section">
+        <div class="nutrition">
+          <div class="nutrition-title">Nutrition Facts</div>
+          <div class="nutrition-serving">Serving Size: 1 Two-Week Gut Punch<br>Serving Period: Weeks 14–15</div>
+          <div class="nutrition-row"><span>Week 14</span><span>Beat JP 90.46–88.44 (+2.02)</span></div>
+          <div class="nutrition-row"><span>Week 15</span><span>Lost to JP 80.82–96.56 (-15.74)</span></div>
+          <p class="nutrition-ing"><em>Ingredients:</em> Contains a win that felt like progress, and the same opponent taking it back seven days later with interest</p>
+          <div class="nutrition-dv"><span>% Daily Value of Regret</span><span>90%</span></div>
+          <p class="nutrition-note">some kind of record for shortest victory lap in franchise history</p>
+        </div>
+      </div>
   </div>
 </div>
 
@@ -985,6 +1138,7 @@ body {
         <span class="recipe-course-label">Course VII · Sunday Evening</span>
         <h2 class="recipe-title">The Commissioner's Board</h2>
         <p class="recipe-subtitle">Hot Honey Kielbasa · Whipped Feta · Accoutrements</p>
+        <p class="recipe-pairing">Pairs with champagne, but you're not allowed to drink it, you're just allowed to watch someone else enjoy it</p>
       </div>
       <div class="recipe-blurb">
         Trevor built a gold penis on a fork, handed it to a man who deserved it, and then won the championship the very next year like the universe owed him one. <strong>I made kielbasa lacquered enough to catch a reflection and put it next to whipped feta, because if Trevor gets to live like royalty off a trophy shaped like a dick, the least I can do is eat like it too.</strong> Hot honey, brown sugar, a board covered in cornichons and apple and crackers — this is what winning looks like. I wouldn't know from experience this year, but I can at least eat like I do.
@@ -1026,6 +1180,19 @@ body {
         </div>
       </div>
     </div>
+      <div class="recipe-section">
+        <div class="nutrition">
+          <div class="nutrition-title">Nutrition Facts</div>
+          <div class="nutrition-serving">Serving Size: 1 Margin Thinner Than a Slice of Prosciutto</div>
+          <div class="nutrition-row"><span>Week</span><span>16 (Consolation)</span></div>
+          <div class="nutrition-row"><span>Opponent</span><span>Juicy J Can't (Jordan, 4-10)</span></div>
+          <div class="nutrition-row"><span>Score</span><span>111.56–111.78</span></div>
+          <div class="nutrition-row"><span>Margin</span><span>Lost by 0.22</span></div>
+          <p class="nutrition-ing"><em>Ingredients:</em> Contains the closest loss of the entire season, delivered by a man with a losing record</p>
+          <div class="nutrition-dv"><span>% Daily Value of Regret</span><span>100%</span></div>
+          <p class="nutrition-note">quarter of a point, worst team in the league, still got it done</p>
+        </div>
+      </div>
   </div>
 </div>
 
@@ -1048,6 +1215,7 @@ body {
         <span class="recipe-course-label">Course VIII · Monday Evening — The Final Course</span>
         <h2 class="recipe-title">The Dead Cap</h2>
         <p class="recipe-subtitle">Bacon-Wrapped Dog · Chipotle Crema · Mango-Jalapeño Pico</p>
+        <p class="recipe-pairing">Pairs with a gas station margarita in a pouch, frozen solid, eaten with a spoon like the punishment it is</p>
       </div>
       <div class="recipe-blurb">
         Wrapped tight in bacon with zero gaps — <strong>coverage I never once managed on my actual roster.</strong> This is the last course. It's spicy, it's sweet, and unlike my 2025 campaign it sticks the landing. Week four I lost by 61.04 to the man who went on to win the whole thing, which at least has some dignity to it. Week seventeen I lost the placement game by 37.84 and became this. The punishment is over. I have made peace with none of it.
@@ -1091,6 +1259,19 @@ body {
         </div>
       </div>
     </div>
+      <div class="recipe-section">
+        <div class="nutrition">
+          <div class="nutrition-title">Nutrition Facts</div>
+          <div class="nutrition-serving">Serving Size: 1 Final Placement Game</div>
+          <div class="nutrition-row"><span>Week</span><span>17 (Consolation, Placement)</span></div>
+          <div class="nutrition-row"><span>Opponent</span><span>Butt Kickers</span></div>
+          <div class="nutrition-row"><span>Score</span><span>79.88–117.72</span></div>
+          <div class="nutrition-row"><span>Margin</span><span>Lost by 37.84</span></div>
+          <p class="nutrition-ing"><em>Ingredients:</em> Contains the official, notarized, 12th-place finish, and the last hot dog on this menu, which feels appropriate</p>
+          <div class="nutrition-dv"><span>% Daily Value of Regret</span><span>100%</span></div>
+          <p class="nutrition-note">final score, final standing, nowhere left to lose to</p>
+        </div>
+      </div>
   </div>
 </div>
 
