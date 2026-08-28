@@ -5,51 +5,560 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<title>The Biggest Wiener — Recipe Reference</title>
+<title>The Biggest Wiener &mdash; Full Menu</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Courier+Prime:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="daily.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0A0A0A;
+  --charcoal: #161613;
+  --bone: #F2EDE4;
+  --gold: #B8965A;
+  --gold-light: #D4B07A;
+  --muted: #7A7468;
+  --rule: rgba(184, 150, 90, 0.28);
+  --page-w: 900px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #111;
+  color: var(--bone);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  width: 100%;
+  max-width: var(--page-w);
+  min-height: 100vh;
+  margin: 0 auto;
+  display: none;
+  flex-direction: column;
+  background: var(--black);
+  border-left: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+  position: relative;
+}
+.page.active { display: flex; }
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 2.5rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--charcoal);
+  flex-shrink: 0;
+}
+.nav-course {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.nav-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--muted);
+  text-align: center;
+  flex: 1;
+  padding: 0 1rem;
+}
+.nav-controls { display: flex; gap: 0.5rem; align-items: center; }
+.nav-btn {
+  background: none;
+  border: 1px solid var(--rule);
+  color: var(--gold);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.nav-btn:hover { background: var(--gold); color: var(--black); }
+.nav-btn:disabled { opacity: 0.25; cursor: default; }
+.nav-btn:disabled:hover { background: none; color: var(--gold); }
+
+/* COVER */
+.cover-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5rem 3rem;
+  background: radial-gradient(ellipse at center, #1e1a14 0%, #0A0A0A 75%);
+}
+.cover-eyebrow {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2.5rem;
+}
+.cover-hr { width: 48px; height: 1px; background: var(--gold); margin: 0 auto 2.5rem; }
+.cover-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 400;
+  line-height: 1.0;
+  color: var(--bone);
+  margin-bottom: 0.4rem;
+}
+.cover-title em { font-style: italic; color: var(--gold-light); }
+.cover-sub {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(0.95rem, 2.5vw, 1.35rem);
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 3rem;
+  letter-spacing: 0.03em;
+}
+.cover-intro {
+  font-size: 1.05rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.95;
+  color: rgba(242,237,228,0.6);
+  max-width: 580px;
+  margin: 0 auto 3.5rem;
+  text-align: left;
+}
+.cover-intro p { margin-bottom: 1.25rem; }
+.cover-intro p:last-child { margin-bottom: 0; }
+.cover-meta {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(138,130,120,0.5);
+}
+.cover-start {
+  margin-top: 3rem;
+  background: none;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.cover-start:hover { background: var(--gold); color: var(--black); }
+
+/* TOC */
+.toc-body {
+  flex: 1;
+  padding: 4rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.toc-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2.5rem;
+  display: block;
+}
+.toc-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+  cursor: pointer;
+  transition: color 0.2s;
+  text-decoration: none;
+  color: var(--bone);
+  gap: 1.25rem;
+}
+.toc-item:hover { color: var(--gold-light); }
+.toc-item:first-of-type { border-top: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  width: 2.5rem;
+  flex-shrink: 0;
+  padding-top: 0.3rem;
+}
+.toc-dish-wrap { flex: 1; }
+.toc-dish { font-family: 'Playfair Display', serif; font-size: 1.15rem; display: block; }
+.toc-dish-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.88rem;
+  display: block;
+  margin-top: 0.2rem;
+  line-height: 1.5;
+}
+.toc-weekday {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  padding-top: 0.3rem;
+}
+
+/* RECIPE PAGE */
+.recipe-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 0;
+}
+.recipe-left {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--rule);
+  overflow: hidden;
+}
+.recipe-image-wrap {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+.recipe-image-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(10,10,10,0.6) 100%);
+  pointer-events: none;
+}
+.recipe-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.8) contrast(1.08);
+  transition: transform 0.7s ease;
+}
+.recipe-image-wrap:hover img { transform: scale(1.04); }
+.recipe-header {
+  padding: 2rem 2.25rem 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.recipe-course-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.recipe-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 3vw, 1.95rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--bone);
+  margin-bottom: 0.3rem;
+}
+.recipe-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--gold-light);
+  letter-spacing: 0.04em;
+}
+.recipe-meta-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--rule);
+  flex-shrink: 0;
+}
+.meta-cell { padding: 0.9rem 1.25rem; border-right: 1px solid var(--rule); }
+.meta-cell:last-child { border-right: none; }
+.meta-cell:nth-child(3), .meta-cell:nth-child(4) { border-top: 1px solid var(--rule); }
+.meta-key {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.meta-val { font-family: 'Cormorant Garamond', serif; font-size: 0.92rem; font-style: italic; color: var(--bone); }
+
+/* RIGHT COLUMN */
+.recipe-right {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: calc(100vh - 52px);
+}
+.recipe-section { padding: 1.75rem 2.25rem; border-bottom: 1px solid var(--rule); }
+.recipe-section:last-child { border-bottom: none; flex: 1; }
+.section-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 1.1rem;
+}
+.ing-list { list-style: none; }
+.ing-list li {
+  font-size: 0.93rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: rgba(242,237,228,0.72);
+  padding: 0.35rem 0 0.35rem 1.1rem;
+  border-bottom: 1px solid rgba(184,150,90,0.1);
+  position: relative;
+}
+.ing-list li:last-child { border-bottom: none; }
+.ing-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 0.65rem; top: 0.45rem; }
+.step { display: flex; gap: 1rem; margin-bottom: 1.1rem; }
+.step:last-child { margin-bottom: 0; }
+.step-n {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-top: 0.22rem;
+  flex-shrink: 0;
+  width: 1.4rem;
+}
+.step-t { font-size: 0.92rem; font-weight: 300; line-height: 1.75; color: rgba(242,237,228,0.7); }
+.recipe-pairing {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--gold-light);
+  margin-top: 0.7rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--rule);
+}
+.recipe-spacer { flex: 1; }
+
+/* COLOPHON */
+.colophon-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5rem 3rem;
+  background: radial-gradient(ellipse at center, #1a160f 0%, #0A0A0A 75%);
+}
+.colophon-hr { width: 48px; height: 1px; background: var(--gold); margin: 0 auto 2.5rem; }
+.colophon-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--bone);
+  margin-bottom: 1.5rem;
+}
+.colophon-text {
+  font-size: 1.05rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.95;
+  color: var(--muted);
+  max-width: 500px;
+  margin: 0 auto 3rem;
+  text-align: left;
+}
+.colophon-text p { margin-bottom: 1rem; }
+.colophon-text p:last-child { margin-bottom: 0; }
+.colophon-meta {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(138,130,120,0.4);
+}
+
+.page-indicator {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+  z-index: 100;
+}
+.pip {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--rule);
+  border: 1px solid var(--gold);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.pip.active { background: var(--gold); }
+
+@media (max-width: 680px) {
+  .recipe-body { grid-template-columns: 1fr; }
+  .recipe-left { border-right: none; border-bottom: 1px solid var(--rule); }
+  .recipe-right { max-height: none; overflow-y: visible; }
+  .nav-title { display: none; }
+  .toc-body { padding: 2.5rem 1.5rem; }
+}
+</style>
 </head>
 <body>
-<div class="sheet">
 
-  <header class="bar">
-    <span class="bar-left">The Biggest Wiener</span>
-    <span class="bar-center">Devaraiders · 2025</span>
-    <span class="bar-right">Recipe Reference</span>
-  </header>
-
-  <section class="menu-hero">
-    <p class="menu-hero-eyebrow">All Eight Courses</p>
-    <div class="hr-gold"></div>
-    <h1 class="menu-hero-title">The <em>Recipes</em></h1>
-  </section>
-
-  <!-- MENU -->
-  <section class="menu-head">
-    <span class="menu-label">Ingredients &amp; Steps Only · No Story</span>
-    <p class="menu-note">One protein. Eight courses. Every dish gluten-free.</p>
-  </section>
-
-  <!-- COURSE I -->
-  <article class="course" id="course-1">
-    <div class="course-media">
-      <img src="images/course1.jpg" alt="Whole grilled hot dog with crosshatch char on a charred corn tortilla with shaved cabbage, pickled jalapeños, cotija and chipotle crema" onerror="this.style.background='#1a1a18'">
+<!-- PAGE 0: COVER -->
+<div class="page active" id="p0">
+  <div class="nav-bar">
+    <span class="nav-course">The Biggest Wiener &middot; Devaraiders 2025</span>
+    <span class="nav-title">Full Menu &middot; Blake Kelly</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(1)">Enter &rarr;</button>
     </div>
-    <div class="course-head">
-      <span class="course-label">Course I · Monday</span>
-      <h2 class="course-title">The Waiver Wire Special</h2>
-      <p class="course-sub">Charred Whole Dog · Corn Tortilla · Chipotle Emulsion</p>
-      <p class="recipe-pairing">Pairs with a can of Busch Light, room temperature, from the twelve-pack nobody claimed at the draft party</p>
+  </div>
+  <div class="cover-body">
+    <p class="cover-eyebrow">Devaraiders Fantasy Football &middot; 2025 Season &middot; Recipe Reference</p>
+    <div class="cover-hr"></div>
+    <h1 class="cover-title">The Biggest<br><em>Wiener</em></h1>
+    <p class="cover-sub">The Full Menu</p>
+    <div class="cover-hr"></div>
+    <div class="cover-intro">
+      <p>All eight courses in one place, click-through instead of one scroll &mdash; ingredients and steps only, no commentary, no league drama. Jump straight to whichever course you're cooking tonight from the menu on the next page, or click through in order.</p>
     </div>
-    <div class="meta-strip">
-      <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef hot dogs</span></div>
-      <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Grill, crosshatch char</span></div>
-      <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">GF corn tortillas</span></div>
-      <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">15 minutes</span></div>
+    <p class="cover-meta">Gluten-Free &middot; Serves Two &middot; Eight Courses &middot; Ingredients &amp; Steps Only</p>
+    <button class="cover-start" onclick="goTo(1)">View the Menu</button>
+  </div>
+</div>
+
+<!-- PAGE 1: TOC -->
+<div class="page" id="p1">
+  <div class="nav-bar">
+    <span class="nav-course">The Courses</span>
+    <span class="nav-title">The Biggest Wiener &middot; Full Menu</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(0)">&larr; Back</button>
+      <button class="nav-btn" onclick="goTo(2)">Next &rarr;</button>
     </div>
-    <div class="course-cols">
-      <div class="col">
-        <span class="section-label">Ingredients — Serves 2</span>
+  </div>
+  <div class="toc-body">
+    <span class="toc-label">Eight Courses &middot; Ingredients &amp; Steps Only</span>
+    <div class="toc-item" onclick="goTo(2)">
+      <span class="toc-num">I</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">The Waiver Wire Special</span>
+        <span class="toc-dish-sub">Charred Whole Dog · Corn Tortilla · Chipotle Emulsion</span>
+      </div>
+      <span class="toc-weekday">Monday</span>
+    </div>
+    <div class="toc-item" onclick="goTo(3)">
+      <span class="toc-num">II</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">Pigs in a Playoff Blanket</span>
+        <span class="toc-dish-sub">Upside-Down Puff Pastry Dog · Gruyère · Everything Crust</span>
+      </div>
+      <span class="toc-weekday">Tuesday</span>
+    </div>
+    <div class="toc-item" onclick="goTo(4)">
+      <span class="toc-num">III</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">Tartare of Last Resort</span>
+        <span class="toc-dish-sub">All-Beef Hot Dog · Capers · Dijon · Shallot · Raw Egg Yolk</span>
+      </div>
+      <span class="toc-weekday">Wednesday</span>
+    </div>
+    <div class="toc-item" onclick="goTo(5)">
+      <span class="toc-num">IV</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">Fourth and Wellington</span>
+        <span class="toc-dish-sub">Hot Dog Wellington · Mushroom Duxelles · Prosciutto · GF Puff Pastry</span>
+      </div>
+      <span class="toc-weekday">Thursday</span>
+    </div>
+    <div class="toc-item" onclick="goTo(6)">
+      <span class="toc-num">V</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">The Cannelloni Consolation</span>
+        <span class="toc-dish-sub">Bratwurst-Stuffed Cannelloni · Sun-Dried Tomato Cream · Baked</span>
+      </div>
+      <span class="toc-weekday">Friday</span>
+    </div>
+    <div class="toc-item" onclick="goTo(7)">
+      <span class="toc-num">VI</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">The Ratfuck</span>
+        <span class="toc-dish-sub">Grilled All-Beef Dog · Full Elote Treatment · Charred Corn</span>
+      </div>
+      <span class="toc-weekday">Saturday</span>
+    </div>
+    <div class="toc-item" onclick="goTo(8)">
+      <span class="toc-num">VII</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">The Commissioner's Board</span>
+        <span class="toc-dish-sub">Hot Honey Kielbasa · Whipped Feta · Accoutrements</span>
+      </div>
+      <span class="toc-weekday">Sunday</span>
+    </div>
+    <div class="toc-item" onclick="goTo(9)">
+      <span class="toc-num">VIII</span>
+      <div class="toc-dish-wrap">
+        <span class="toc-dish">The Golden Shower Dog</span>
+        <span class="toc-dish-sub">Bacon-Wrapped Dog · Chipotle Crema · Mango-Jalapeño Pico</span>
+      </div>
+      <span class="toc-weekday">Monday</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: COURSE I -->
+<div class="page" id="p2">
+  <div class="nav-bar">
+    <span class="nav-course">Course I &middot; Monday</span>
+    <span class="nav-title">The Biggest Wiener &middot; Full Menu</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(1)">&larr; Back</button>
+      <button class="nav-btn" onclick="goTo(3)">Next &rarr;</button>
+    </div>
+  </div>
+  <div class="recipe-body">
+    <div class="recipe-left">
+      <div class="recipe-image-wrap">
+        <img src="images/course1.jpg" alt="Whole grilled hot dog with crosshatch char on a charred corn tortilla with shaved cabbage, pickled jalapeños, cotija and chipotle crema" onerror="this.style.background='#1a1a18'">
+      </div>
+      <div class="recipe-header">
+        <span class="recipe-course-label">Course I &middot; Monday Evening</span>
+        <h2 class="recipe-title">The Waiver Wire Special</h2>
+        <p class="recipe-subtitle">Charred Whole Dog · Corn Tortilla · Chipotle Emulsion</p>
+        <p class="recipe-pairing">Pairs with a can of Busch Light, room temperature, from the twelve-pack nobody claimed at the draft party</p>
+      </div>
+      <div class="recipe-spacer"></div>
+      <div class="recipe-meta-strip">
+        <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef hot dogs</span></div>
+        <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Grill, crosshatch char</span></div>
+        <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">GF corn tortillas</span></div>
+        <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">15 minutes</span></div>
+      </div>
+    </div>
+    <div class="recipe-right">
+      <div class="recipe-section">
+        <span class="section-label">Ingredients &mdash; Serves 2</span>
         <ul class="ing-list">
           <li>4 all-beef hot dogs, left whole</li>
           <li>6 GF corn tortillas</li>
@@ -61,7 +570,7 @@
           <li>Neutral oil, kosher salt</li>
         </ul>
       </div>
-      <div class="col">
+      <div class="recipe-section">
         <span class="section-label">Preparation</span>
         <div class="step"><span class="step-n">01</span><span class="step-t">Heat a grill or cast iron skillet over high heat until smoking. Add a thin film of neutral oil if using a pan.</span></div>
         <div class="step"><span class="step-n">02</span><span class="step-t">Score each hot dog in a tight crosshatch pattern, cutting about ⅛-inch deep on all sides. This lets the fat render out and the surface curl and crisp as it cooks.</span></div>
@@ -70,28 +579,41 @@
         <div class="step"><span class="step-n">05</span><span class="step-t">Spread chipotle mayo on each tortilla. Lay one whole charred dog in each. Top with cabbage, jalapeños, cotija. Finish with an aggressive squeeze of lime and flaky salt.</span></div>
       </div>
     </div>
-  </article>
+  </div>
+</div>
 
-  <!-- COURSE II -->
-  <article class="course" id="course-2">
-    <div class="course-media">
-      <img src="images/course2.jpg" alt="Puff pastry-wrapped hot dog crusted with everything bagel seasoning over a caramelized cheese layer, served with whole grain mustard" onerror="this.style.background='#1a1a18'">
+<!-- PAGE 3: COURSE II -->
+<div class="page" id="p3">
+  <div class="nav-bar">
+    <span class="nav-course">Course II &middot; Tuesday</span>
+    <span class="nav-title">The Biggest Wiener &middot; Full Menu</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(2)">&larr; Back</button>
+      <button class="nav-btn" onclick="goTo(4)">Next &rarr;</button>
     </div>
-    <div class="course-head">
-      <span class="course-label">Course II · Tuesday</span>
-      <h2 class="course-title">Pigs in a Playoff Blanket</h2>
-      <p class="course-sub">Upside-Down Puff Pastry Dog · Gruyère · Everything Crust</p>
-      <p class="recipe-pairing">Pairs with Two-Buck Chuck, the red, until the color in the glass and the color coming back up are the same shade</p>
+  </div>
+  <div class="recipe-body">
+    <div class="recipe-left">
+      <div class="recipe-image-wrap">
+        <img src="images/course2.jpg" alt="Puff pastry-wrapped hot dog crusted with everything bagel seasoning over a caramelized cheese layer, served with whole grain mustard" onerror="this.style.background='#1a1a18'">
+      </div>
+      <div class="recipe-header">
+        <span class="recipe-course-label">Course II &middot; Tuesday Evening</span>
+        <h2 class="recipe-title">Pigs in a Playoff Blanket</h2>
+        <p class="recipe-subtitle">Upside-Down Puff Pastry Dog · Gruyère · Everything Crust</p>
+        <p class="recipe-pairing">Pairs with Two-Buck Chuck, the red, until the color in the glass and the color coming back up are the same shade</p>
+      </div>
+      <div class="recipe-spacer"></div>
+      <div class="recipe-meta-strip">
+        <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef hot dogs</span></div>
+        <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Oven bake, inversion</span></div>
+        <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">GF puff pastry</span></div>
+        <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">10 min + 20 min oven</span></div>
+      </div>
     </div>
-    <div class="meta-strip">
-      <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef hot dogs</span></div>
-      <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Oven bake, inversion</span></div>
-      <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">GF puff pastry</span></div>
-      <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">10 min + 20 min oven</span></div>
-    </div>
-    <div class="course-cols">
-      <div class="col">
-        <span class="section-label">Ingredients — Serves 2</span>
+    <div class="recipe-right">
+      <div class="recipe-section">
+        <span class="section-label">Ingredients &mdash; Serves 2</span>
         <ul class="ing-list">
           <li>4 all-beef hot dogs</li>
           <li>1 sheet GF puff pastry, thawed — verify label; Pepperidge Farm is NOT GF</li>
@@ -102,7 +624,7 @@
           <li>Parchment paper</li>
         </ul>
       </div>
-      <div class="col">
+      <div class="recipe-section">
         <span class="section-label">Preparation</span>
         <div class="step"><span class="step-n">01</span><span class="step-t">Preheat oven to 400°F. Line a baking sheet with parchment and lightly grease it.</span></div>
         <div class="step"><span class="step-n">02</span><span class="step-t">Lay cheese slices directly on the parchment. Place one hot dog centered on top of each.</span></div>
@@ -111,28 +633,41 @@
         <div class="step"><span class="step-n">05</span><span class="step-t">Rest exactly 3 minutes. Slide a thin spatula fully underneath and flip cheese-side up onto a board. Serve immediately with whole grain mustard.</span></div>
       </div>
     </div>
-  </article>
+  </div>
+</div>
 
-  <!-- COURSE III -->
-  <article class="course" id="course-3">
-    <div class="course-media">
-      <img src="images/course3.jpg" alt="Hot dog tartare pressed in a ring mold with a raw egg yolk, chives and flaky salt, served with crackers and cornichons" onerror="this.style.background='#1a1a18'">
+<!-- PAGE 4: COURSE III -->
+<div class="page" id="p4">
+  <div class="nav-bar">
+    <span class="nav-course">Course III &middot; Wednesday</span>
+    <span class="nav-title">The Biggest Wiener &middot; Full Menu</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(3)">&larr; Back</button>
+      <button class="nav-btn" onclick="goTo(5)">Next &rarr;</button>
     </div>
-    <div class="course-head">
-      <span class="course-label">Course III · Wednesday</span>
-      <h2 class="course-title">Tartare of Last Resort</h2>
-      <p class="course-sub">All-Beef Hot Dog · Capers · Dijon · Shallot · Raw Egg Yolk</p>
-      <p class="recipe-pairing">Pairs with a shot of Malort, taken the way you take bad news — fast, and without asking anyone to explain it first</p>
+  </div>
+  <div class="recipe-body">
+    <div class="recipe-left">
+      <div class="recipe-image-wrap">
+        <img src="images/course3.jpg" alt="Hot dog tartare pressed in a ring mold with a raw egg yolk, chives and flaky salt, served with crackers and cornichons" onerror="this.style.background='#1a1a18'">
+      </div>
+      <div class="recipe-header">
+        <span class="recipe-course-label">Course III &middot; Wednesday Evening</span>
+        <h2 class="recipe-title">Tartare of Last Resort</h2>
+        <p class="recipe-subtitle">All-Beef Hot Dog · Capers · Dijon · Shallot · Raw Egg Yolk</p>
+        <p class="recipe-pairing">Pairs with a shot of Malort, taken the way you take bad news — fast, and without asking anyone to explain it first</p>
+      </div>
+      <div class="recipe-spacer"></div>
+      <div class="recipe-meta-strip">
+        <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef hot dogs</span></div>
+        <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">No-cook · knife work</span></div>
+        <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">Ring mold, plated</span></div>
+        <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">15 minutes</span></div>
+      </div>
     </div>
-    <div class="meta-strip">
-      <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef hot dogs</span></div>
-      <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">No-cook · knife work</span></div>
-      <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">Ring mold, plated</span></div>
-      <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">15 minutes</span></div>
-    </div>
-    <div class="course-cols">
-      <div class="col">
-        <span class="section-label">Ingredients — Serves 2</span>
+    <div class="recipe-right">
+      <div class="recipe-section">
+        <span class="section-label">Ingredients &mdash; Serves 2</span>
         <ul class="ing-list">
           <li>4 all-beef hot dogs, very finely diced — knife work only, no food processor</li>
           <li>2 tbsp shallot, minced</li>
@@ -145,7 +680,7 @@
           <li>Flaky salt, black pepper, chives to finish</li>
         </ul>
       </div>
-      <div class="col">
+      <div class="recipe-section">
         <span class="section-label">Preparation</span>
         <div class="step"><span class="step-n">01</span><span class="step-t">Dice hot dogs as finely as possible — small, uniform pieces. This is not the time for rustic.</span></div>
         <div class="step"><span class="step-n">02</span><span class="step-t">In a bowl, combine diced hot dog, shallot, capers, dijon, Worcestershire, and hot sauce. Mix gently until just combined. Season with salt and pepper. Taste. Adjust.</span></div>
@@ -154,28 +689,41 @@
         <div class="step"><span class="step-n">05</span><span class="step-t">Finish with chives and flaky salt. Arrange cornichons and crackers or cucumber alongside. Serve immediately.</span></div>
       </div>
     </div>
-  </article>
+  </div>
+</div>
 
-  <!-- COURSE IV -->
-  <article class="course" id="course-4">
-    <div class="course-media">
-      <img src="images/course4.jpg" alt="Hot dog Wellington sliced to show the whole dog inside mushroom duxelles and prosciutto, wrapped in crosshatch-scored puff pastry" onerror="this.style.background='#1a1a18'">
+<!-- PAGE 5: COURSE IV -->
+<div class="page" id="p5">
+  <div class="nav-bar">
+    <span class="nav-course">Course IV &middot; Thursday</span>
+    <span class="nav-title">The Biggest Wiener &middot; Full Menu</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(4)">&larr; Back</button>
+      <button class="nav-btn" onclick="goTo(6)">Next &rarr;</button>
     </div>
-    <div class="course-head">
-      <span class="course-label">Course IV · Thursday</span>
-      <h2 class="course-title">Fourth and Wellington</h2>
-      <p class="course-sub">Hot Dog Wellington · Mushroom Duxelles · Prosciutto · GF Puff Pastry</p>
-      <p class="recipe-pairing">Pairs with whatever's left in the fridge after a 61-point loss, served at the temperature of a locker room an hour after the game ended</p>
+  </div>
+  <div class="recipe-body">
+    <div class="recipe-left">
+      <div class="recipe-image-wrap">
+        <img src="images/course4.jpg" alt="Hot dog Wellington sliced to show the whole dog inside mushroom duxelles and prosciutto, wrapped in crosshatch-scored puff pastry" onerror="this.style.background='#1a1a18'">
+      </div>
+      <div class="recipe-header">
+        <span class="recipe-course-label">Course IV &middot; Thursday Evening — The Centerpiece</span>
+        <h2 class="recipe-title">Fourth and Wellington</h2>
+        <p class="recipe-subtitle">Hot Dog Wellington · Mushroom Duxelles · Prosciutto · GF Puff Pastry</p>
+        <p class="recipe-pairing">Pairs with whatever's left in the fridge after a 61-point loss, served at the temperature of a locker room an hour after the game ended</p>
+      </div>
+      <div class="recipe-spacer"></div>
+      <div class="recipe-meta-strip">
+        <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef hot dogs</span></div>
+        <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Duxelles wrap, oven roast</span></div>
+        <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">GF puff pastry</span></div>
+        <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">45 min prep · 25 min oven</span></div>
+      </div>
     </div>
-    <div class="meta-strip">
-      <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef hot dogs</span></div>
-      <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Duxelles wrap, oven roast</span></div>
-      <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">GF puff pastry</span></div>
-      <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">45 min prep · 25 min oven</span></div>
-    </div>
-    <div class="course-cols">
-      <div class="col">
-        <span class="section-label">Ingredients — Serves 2</span>
+    <div class="recipe-right">
+      <div class="recipe-section">
+        <span class="section-label">Ingredients &mdash; Serves 2</span>
         <ul class="ing-list">
           <li>4 all-beef hot dogs, patted very dry</li>
           <li>8 oz cremini or baby bella mushrooms, very finely chopped</li>
@@ -190,7 +738,7 @@
           <li>Whole grain mustard, to serve</li>
         </ul>
       </div>
-      <div class="col">
+      <div class="recipe-section">
         <span class="section-label">Preparation</span>
         <div class="step"><span class="step-n">01</span><span class="step-t">Make the duxelles: melt butter in a skillet over medium-high heat. Add mushrooms and cook, stirring often, until all moisture has evaporated and the mixture is dark, dry, and deeply concentrated — about 12–15 minutes. Add garlic and thyme for the final 2 minutes. Season and cool completely.</span></div>
         <div class="step"><span class="step-n">02</span><span class="step-t">Brush each hot dog lightly with dijon. Lay a sheet of plastic wrap flat. Arrange 2 prosciutto slices overlapping in a rectangle. Spread a thin, even layer of cooled duxelles over the prosciutto. Place a hot dog at the edge and roll tightly using the plastic wrap to help. Twist the ends to seal. Refrigerate 15 minutes minimum.</span></div>
@@ -199,28 +747,41 @@
         <div class="step"><span class="step-n">05</span><span class="step-t">Bake 20–25 minutes until the pastry is deeply golden and shatteringly crisp. Rest 5 minutes before slicing. Serve with whole grain mustard.</span></div>
       </div>
     </div>
-  </article>
+  </div>
+</div>
 
-  <!-- COURSE V -->
-  <article class="course" id="course-5">
-    <div class="course-media">
-      <img src="images/course5.jpg" alt="Bratwurst-stuffed cannelloni sliced open in sun-dried tomato cream, finished with parmesan and torn basil" onerror="this.style.background='#1a1a18'">
+<!-- PAGE 6: COURSE V -->
+<div class="page" id="p6">
+  <div class="nav-bar">
+    <span class="nav-course">Course V &middot; Friday</span>
+    <span class="nav-title">The Biggest Wiener &middot; Full Menu</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(5)">&larr; Back</button>
+      <button class="nav-btn" onclick="goTo(7)">Next &rarr;</button>
     </div>
-    <div class="course-head">
-      <span class="course-label">Course V · Friday</span>
-      <h2 class="course-title">The Cannelloni Consolation</h2>
-      <p class="course-sub">Bratwurst-Stuffed Cannelloni · Sun-Dried Tomato Cream · Baked</p>
-      <p class="recipe-pairing">Pairs with a warm Natty Light found under the couch, consolation bracket rules apply to beverages too</p>
+  </div>
+  <div class="recipe-body">
+    <div class="recipe-left">
+      <div class="recipe-image-wrap">
+        <img src="images/course5.jpg" alt="Bratwurst-stuffed cannelloni sliced open in sun-dried tomato cream, finished with parmesan and torn basil" onerror="this.style.background='#1a1a18'">
+      </div>
+      <div class="recipe-header">
+        <span class="recipe-course-label">Course V &middot; Friday Evening</span>
+        <h2 class="recipe-title">The Cannelloni Consolation</h2>
+        <p class="recipe-subtitle">Bratwurst-Stuffed Cannelloni · Sun-Dried Tomato Cream · Baked</p>
+        <p class="recipe-pairing">Pairs with a warm Natty Light found under the couch, consolation bracket rules apply to beverages too</p>
+      </div>
+      <div class="recipe-spacer"></div>
+      <div class="recipe-meta-strip">
+        <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">Bratwurst</span></div>
+        <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Stuff, bake in sauce</span></div>
+        <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">GF cannelloni tubes</span></div>
+        <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">6 min sear + 35 min bake</span></div>
+      </div>
     </div>
-    <div class="meta-strip">
-      <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">Bratwurst</span></div>
-      <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Stuff, bake in sauce</span></div>
-      <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">GF cannelloni tubes</span></div>
-      <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">6 min sear + 35 min bake</span></div>
-    </div>
-    <div class="course-cols">
-      <div class="col">
-        <span class="section-label">Ingredients — Serves 2</span>
+    <div class="recipe-right">
+      <div class="recipe-section">
+        <span class="section-label">Ingredients &mdash; Serves 2</span>
         <ul class="ing-list">
           <li>4 bratwurst links, casings left on</li>
           <li>8 GF cannelloni tubes (par-boiled 3 minutes to soften, drained)</li>
@@ -234,7 +795,7 @@
           <li>Olive oil, salt, black pepper</li>
         </ul>
       </div>
-      <div class="col">
+      <div class="recipe-section">
         <span class="section-label">Preparation</span>
         <div class="step"><span class="step-n">01</span><span class="step-t">Preheat oven to 375°F. Par-boil cannelloni tubes in salted water for 3 minutes — just enough to soften, not fully cook. Drain and lay flat on a towel.</span></div>
         <div class="step"><span class="step-n">02</span><span class="step-t">Sear bratwurst whole in a hot pan with no oil, turning until deeply browned on all sides, about 6 minutes total. They won't be cooked through — that finishes in the oven.</span></div>
@@ -244,28 +805,41 @@
         <div class="step"><span class="step-n">06</span><span class="step-t">Rest 5 minutes. Slice each cannelloni in half lengthwise on the plate to reveal the brat inside. Finish with extra parmesan and torn basil.</span></div>
       </div>
     </div>
-  </article>
+  </div>
+</div>
 
-  <!-- COURSE VI -->
-  <article class="course" id="course-6">
-    <div class="course-media">
-      <img src="images/course6.jpg" alt="Scored and charred whole hot dog with elote topping beside charred corn on the cob with cotija, chili and lime" onerror="this.style.background='#1a1a18'">
+<!-- PAGE 7: COURSE VI -->
+<div class="page" id="p7">
+  <div class="nav-bar">
+    <span class="nav-course">Course VI &middot; Saturday</span>
+    <span class="nav-title">The Biggest Wiener &middot; Full Menu</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(6)">&larr; Back</button>
+      <button class="nav-btn" onclick="goTo(8)">Next &rarr;</button>
     </div>
-    <div class="course-head">
-      <span class="course-label">Course VI · Saturday</span>
-      <h2 class="course-title">The Ratfuck</h2>
-      <p class="course-sub">Grilled All-Beef Dog · Full Elote Treatment · Charred Corn</p>
-      <p class="recipe-pairing">Pairs with Milwaukee's Best, drunk with the same commitment you gave your flex spot all season — none</p>
+  </div>
+  <div class="recipe-body">
+    <div class="recipe-left">
+      <div class="recipe-image-wrap">
+        <img src="images/course6.jpg" alt="Scored and charred whole hot dog with elote topping beside charred corn on the cob with cotija, chili and lime" onerror="this.style.background='#1a1a18'">
+      </div>
+      <div class="recipe-header">
+        <span class="recipe-course-label">Course VI &middot; Saturday Evening</span>
+        <h2 class="recipe-title">The Ratfuck</h2>
+        <p class="recipe-subtitle">Grilled All-Beef Dog · Full Elote Treatment · Charred Corn</p>
+        <p class="recipe-pairing">Pairs with Milwaukee's Best, drunk with the same commitment you gave your flex spot all season — none</p>
+      </div>
+      <div class="recipe-spacer"></div>
+      <div class="recipe-meta-strip">
+        <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef hot dogs</span></div>
+        <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Grill or cast iron char</span></div>
+        <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">Standalone — no bun</span></div>
+        <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">20 minutes</span></div>
+      </div>
     </div>
-    <div class="meta-strip">
-      <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef hot dogs</span></div>
-      <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Grill or cast iron char</span></div>
-      <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">Standalone — no bun</span></div>
-      <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">20 minutes</span></div>
-    </div>
-    <div class="course-cols">
-      <div class="col">
-        <span class="section-label">Ingredients — Serves 2</span>
+    <div class="recipe-right">
+      <div class="recipe-section">
+        <span class="section-label">Ingredients &mdash; Serves 2</span>
         <ul class="ing-list">
           <li>4 all-beef hot dogs</li>
           <li>2 ears corn, husked</li>
@@ -278,7 +852,7 @@
           <li>Pinch of cayenne — optional but correct</li>
         </ul>
       </div>
-      <div class="col">
+      <div class="recipe-section">
         <span class="section-label">Preparation</span>
         <div class="step"><span class="step-n">01</span><span class="step-t">Grill corn directly over high heat, turning every 2–3 minutes, until charred in spots on all sides — about 10 minutes. Set aside without wrapping. The char is the point.</span></div>
         <div class="step"><span class="step-n">02</span><span class="step-t">Score each hot dog with 4–5 diagonal cuts on each side, deep enough to open slightly when heated. This is not decorative. Surface area is where flavor lives.</span></div>
@@ -287,28 +861,41 @@
         <div class="step"><span class="step-n">05</span><span class="step-t">Squeeze lime aggressively — more than seems reasonable. Scatter cilantro. Add cayenne. Serve everything together on one platter at equal standing.</span></div>
       </div>
     </div>
-  </article>
+  </div>
+</div>
 
-  <!-- COURSE VII -->
-  <article class="course" id="course-7">
-    <div class="course-media">
-      <img src="images/course7.jpg" alt="Glazed kielbasa coins on a wooden board with whipped feta, apple slices, cornichons and seeded crackers" onerror="this.style.background='#1a1a18'">
+<!-- PAGE 8: COURSE VII -->
+<div class="page" id="p8">
+  <div class="nav-bar">
+    <span class="nav-course">Course VII &middot; Sunday</span>
+    <span class="nav-title">The Biggest Wiener &middot; Full Menu</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(7)">&larr; Back</button>
+      <button class="nav-btn" onclick="goTo(9)">Next &rarr;</button>
     </div>
-    <div class="course-head">
-      <span class="course-label">Course VII · Sunday</span>
-      <h2 class="course-title">The Commissioner's Board</h2>
-      <p class="course-sub">Hot Honey Kielbasa · Whipped Feta · Accoutrements</p>
-      <p class="recipe-pairing">Pairs with champagne, but you're not allowed to drink it, you're just allowed to watch someone else enjoy it</p>
+  </div>
+  <div class="recipe-body">
+    <div class="recipe-left">
+      <div class="recipe-image-wrap">
+        <img src="images/course7.jpg" alt="Glazed kielbasa coins on a wooden board with whipped feta, apple slices, cornichons and seeded crackers" onerror="this.style.background='#1a1a18'">
+      </div>
+      <div class="recipe-header">
+        <span class="recipe-course-label">Course VII &middot; Sunday Evening</span>
+        <h2 class="recipe-title">The Commissioner's Board</h2>
+        <p class="recipe-subtitle">Hot Honey Kielbasa · Whipped Feta · Accoutrements</p>
+        <p class="recipe-pairing">Pairs with champagne, but you're not allowed to drink it, you're just allowed to watch someone else enjoy it</p>
+      </div>
+      <div class="recipe-spacer"></div>
+      <div class="recipe-meta-strip">
+        <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">Kielbasa</span></div>
+        <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Skillet caramelize</span></div>
+        <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">Serving board</span></div>
+        <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">15 minutes active</span></div>
+      </div>
     </div>
-    <div class="meta-strip">
-      <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">Kielbasa</span></div>
-      <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Skillet caramelize</span></div>
-      <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">Serving board</span></div>
-      <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">15 minutes active</span></div>
-    </div>
-    <div class="course-cols">
-      <div class="col">
-        <span class="section-label">Ingredients — Serves 2</span>
+    <div class="recipe-right">
+      <div class="recipe-section">
+        <span class="section-label">Ingredients &mdash; Serves 2</span>
         <ul class="ing-list">
           <li>1 ring kielbasa (~14 oz), sliced into ½-inch coins</li>
           <li>2 tbsp hot honey</li>
@@ -322,7 +909,7 @@
           <li>Fresh thyme, optional</li>
         </ul>
       </div>
-      <div class="col">
+      <div class="recipe-section">
         <span class="section-label">Preparation</span>
         <div class="step"><span class="step-n">01</span><span class="step-t">Make whipped feta first — ideally the day before: blend crumbled feta, olive oil, and lemon juice until completely smooth, 60–90 seconds. Adjust with olive oil for consistency. Refrigerate with a drizzle of oil on top. It improves overnight.</span></div>
         <div class="step"><span class="step-n">02</span><span class="step-t">In a skillet over medium-high, add kielbasa coins in a single uncrowded layer with no oil. Sear without touching 2–3 minutes until deeply browned. Flip and repeat.</span></div>
@@ -330,28 +917,41 @@
         <div class="step"><span class="step-n">04</span><span class="step-t">Transfer glazed kielbasa immediately to a board while the glaze is still molten. Arrange whipped feta in its bowl, apple slices, cornichons, and crackers in the remaining space. Garnish with thyme if using.</span></div>
       </div>
     </div>
-  </article>
+  </div>
+</div>
 
-  <!-- COURSE VIII -->
-  <article class="course" id="course-8">
-    <div class="course-media">
-      <img src="images/course8.jpg" alt="Bacon-wrapped hot dogs topped with mango-jalapeño pico over a pool of chipotle crema" onerror="this.style.background='#1a1a18'">
+<!-- PAGE 9: COURSE VIII -->
+<div class="page" id="p9">
+  <div class="nav-bar">
+    <span class="nav-course">Course VIII &middot; Monday</span>
+    <span class="nav-title">The Biggest Wiener &middot; Full Menu</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(8)">&larr; Back</button>
+      <button class="nav-btn" onclick="goTo(10)">Close &rarr;</button>
     </div>
-    <div class="course-head">
-      <span class="course-label">Course VIII · Monday — The Final Course</span>
-      <h2 class="course-title">The Golden Shower Dog</h2>
-      <p class="course-sub">Bacon-Wrapped Dog · Chipotle Crema · Mango-Jalapeño Pico</p>
-      <p class="recipe-pairing">Pairs with a hot shower and a great shower beer, washing away the season's losses while the rest of your life goes down the toilet right along with it</p>
+  </div>
+  <div class="recipe-body">
+    <div class="recipe-left">
+      <div class="recipe-image-wrap">
+        <img src="images/course8.jpg" alt="Bacon-wrapped hot dogs topped with mango-jalapeño pico over a pool of chipotle crema" onerror="this.style.background='#1a1a18'">
+      </div>
+      <div class="recipe-header">
+        <span class="recipe-course-label">Course VIII &middot; Monday Evening — The Final Course</span>
+        <h2 class="recipe-title">The Golden Shower Dog</h2>
+        <p class="recipe-subtitle">Bacon-Wrapped Dog · Chipotle Crema · Mango-Jalapeño Pico</p>
+        <p class="recipe-pairing">Pairs with a hot shower and a great shower beer, washing away the season's losses while the rest of your life goes down the toilet right along with it</p>
+      </div>
+      <div class="recipe-spacer"></div>
+      <div class="recipe-meta-strip">
+        <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef dogs + bacon</span></div>
+        <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Air fryer, spiral-wrapped</span></div>
+        <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">Standalone, plated</span></div>
+        <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">10 min prep · 12 min cook</span></div>
+      </div>
     </div>
-    <div class="meta-strip">
-      <div class="meta-cell"><span class="meta-key">Protein</span><span class="meta-val">All-beef dogs + bacon</span></div>
-      <div class="meta-cell"><span class="meta-key">Method</span><span class="meta-val">Air fryer, spiral-wrapped</span></div>
-      <div class="meta-cell"><span class="meta-key">Vessel</span><span class="meta-val">Standalone, plated</span></div>
-      <div class="meta-cell"><span class="meta-key">Time</span><span class="meta-val">10 min prep · 12 min cook</span></div>
-    </div>
-    <div class="course-cols">
-      <div class="col">
-        <span class="section-label">Ingredients — Serves 2</span>
+    <div class="recipe-right">
+      <div class="recipe-section">
+        <span class="section-label">Ingredients &mdash; Serves 2</span>
         <ul class="ing-list">
           <li>4 all-beef hot dogs</li>
           <li>8 strips thin-cut bacon — 2 per dog; thick-cut will not fully crisp in time</li>
@@ -367,7 +967,7 @@
           <li>Edible gold leaf or gold dust, for garnish</li>
         </ul>
       </div>
-      <div class="col">
+      <div class="recipe-section">
         <span class="section-label">Preparation</span>
         <div class="step"><span class="step-n">01</span><span class="step-t">Make the pico first: combine mango, jalapeño, red onion, lime juice, cilantro, and a pinch of salt. Let sit at minimum 10 minutes. The acid needs time to settle the raw onion.</span></div>
         <div class="step"><span class="step-n">02</span><span class="step-t">Make the crema: stir together sour cream, minced chipotle, and adobo sauce until smooth. It should be smoky before it's spicy. Refrigerate until serving.</span></div>
@@ -377,16 +977,55 @@
         <div class="step"><span class="step-n">06</span><span class="step-t">Finish with a light dusting of edible gold just before serving — presentation over substance, same as the trophy this dish is named for.</span></div>
       </div>
     </div>
-  </article>
-
-  <footer class="foot">
-    <div class="hr-gold"></div>
-    <p class="foot-meta">
-      The Biggest Wiener · Devaraiders · 2025 Season<br>
-      Eight Courses · All Dishes Gluten-Free · Serves Two
-    </p>
-  </footer>
-
+  </div>
 </div>
+
+<!-- PAGE 10: CLOSING -->
+<div class="page" id="p10">
+  <div class="nav-bar">
+    <span class="nav-course">Fin.</span>
+    <span class="nav-title">The Biggest Wiener</span>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="goTo(9)">&larr; Back</button>
+      <button class="nav-btn" onclick="goTo(1)">Menu</button>
+    </div>
+  </div>
+  <div class="colophon-body">
+    <div class="colophon-hr"></div>
+    <h2 class="colophon-title">That's All Eight.</h2>
+    <div class="colophon-text">
+      <p>Every course, ingredients and steps only &mdash; nothing here but what you need to actually cook this.</p>
+      <p>For the story behind the courses &mdash; the trades, the losses, and the walk of shame that turned into a cookbook &mdash; that lives in the day-by-day reveal, starting at the cover.</p>
+    </div>
+    <p class="colophon-meta">The Biggest Wiener &middot; Devaraiders &middot; 2025 Season &middot; Eight Courses &middot; All Dishes Gluten-Free</p>
+  </div>
+</div>
+
+<div class="page-indicator" id="pips"></div>
+
+<script>
+  const TOTAL = 11;
+  let current = 0;
+  const pipsEl = document.getElementById('pips');
+  for (let i = 0; i < TOTAL; i++) {
+    const pip = document.createElement('div');
+    pip.className = 'pip' + (i === 0 ? ' active' : '');
+    pip.onclick = () => goTo(i);
+    pipsEl.appendChild(pip);
+  }
+  function goTo(n) {
+    if (n < 0 || n >= TOTAL) return;
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.pip').forEach((p, i) => p.classList.toggle('active', i === n));
+    const target = document.getElementById('p' + n);
+    if (target) target.classList.add('active');
+    current = n;
+    window.scrollTo(0, 0);
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') goTo(current + 1);
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+  });
+</script>
 </body>
 </html>

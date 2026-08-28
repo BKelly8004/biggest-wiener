@@ -13,12 +13,12 @@ Hosted on GitHub Pages from `main`.
 | `day1.html` … `day8.html` | Cumulative recipes, one scrolling page each. `day3` contains Courses I–III in full. Recipes only — no story commentary. |
 | `day9.html` | "The Morning After" — an unnumbered epilogue. Not a course. Linked only from the bottom of `day8.html`. |
 | `menu1.html` … `menu8.html` | Cumulative menu galleries — dish names and photos only. Each card links to that course's recipe. |
-| `menu.html` | Bare full recipe reference: all eight courses, ingredients and steps, no commentary. Unlisted — nothing links to it. |
+| `menu.html` | Full recipe reference, all eight courses, ingredients and steps, no commentary — same click-through paginated format as `index.html` (cover → TOC → one course per screen), just with everything unlocked instead of day-gated. Self-contained styles, not `daily.css`. Unlisted — nothing links to it. |
 | `recipe-review.html` | All eight recipes with photos on one page, in a light serif theme of its own. Unlisted. |
 | `links.html` | Quick-links index of every shareable page. Unlisted. |
 | `LINKS.md` | Markdown twin of `links.html`, with absolute URLs so the links work from the GitHub file browser. |
 | `404.html` | Styled not-found page. |
-| `daily.css` | Shared stylesheet for every page above except `recipe-review.html`, which is self-contained. |
+| `daily.css` | Shared stylesheet for every page above except `menu.html` and `recipe-review.html`, which are self-contained. |
 | `images/` | `course1.jpg` … `course8.jpg`, plus `trophy.jpg`. |
 
 There is also a full private edition of the book — the original paginated
