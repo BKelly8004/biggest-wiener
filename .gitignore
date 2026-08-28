@@ -4,3 +4,7 @@ images/*.HEIC
 
 # local dev context - real names/roast material, not for the public repo
 CLAUDE.md
+AGENTS.md
+
+# local tool config
+.claude/
